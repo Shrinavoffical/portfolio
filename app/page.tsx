@@ -26,6 +26,7 @@ import {
   ChevronDown,
   Rocket,
   Heart,
+  Calendar,
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -62,10 +63,10 @@ const services = [
     hoverColor: "hover:bg-purple-50",
   },
   {
-    icon: Palette,
-    title: "Branding & Design",
-    description: "Cohesive brand identities and stunning UI/UX designs that convert visitors into loyal customers.",
-    features: ["Brand Identity", "UI/UX Design", "Design Systems", "Prototyping"],
+    icon: Code,
+    title: "Custom Software Development",
+    description: "Tailored software solutions built from scratch to meet your unique business requirements and scale with your growth.",
+    features: ["Enterprise Solutions", "API Development", "Database Design", "System Integration"],
     gradient: "from-orange-400 to-red-500",
     hoverColor: "hover:bg-orange-50",
   },
@@ -148,7 +149,7 @@ const CustomCursor = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-lime-400 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-50 mix-blend-difference"
         style={{
           translateX: cursorXSpring,
           translateY: cursorYSpring,
@@ -197,7 +198,7 @@ const AnimatedBlob = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <motion.div
-        className="absolute top-20 -right-20 w-96 h-96 bg-gradient-to-br from-lime-200 to-green-200 rounded-full blur-3xl opacity-30"
+        className="absolute top-20 -right-20 w-96 h-96 bg-gradient-to-br from-primary-200 to-primary-300 rounded-full blur-3xl opacity-30"
         animate={{
           x: [0, 50, 0],
           y: [0, -30, 0],
@@ -210,7 +211,7 @@ const AnimatedBlob = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-20 -left-20 w-80 h-80 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-20"
+        className="absolute bottom-20 -left-20 w-80 h-80 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-full blur-3xl opacity-20"
         animate={{
           x: [0, -30, 0],
           y: [0, 40, 0],
@@ -270,7 +271,7 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 + idx * 0.05 + 0.3 }}
               >
-                <CheckCircle className="h-5 w-5 text-lime-500 mr-3 flex-shrink-0" />
+                <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
                 {feature}
               </motion.div>
             ))}
@@ -293,7 +294,7 @@ const ScrollFollowingElement = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100])
 
   return (
-    <div ref={containerRef} className="section__content grid lg:grid-cols-2 gap-16 items-start">
+    <div ref={containerRef} className="section__content container grid lg:grid-cols-2 gap-16 items-start">
       {/* Left side - scrolling content */}
       <motion.div
         initial={{ opacity: 0, x: -100 }}
@@ -302,10 +303,10 @@ const ScrollFollowingElement = () => {
         transition={{ duration: 1 }}
         className="space-y-8"
       >
-        <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-sm">About Our Process</Badge>
+        <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg">About Our Process</Badge>
         <h2 className="text-5xl md:text-6xl font-bold leading-tight">
           How We Create
-          <span className="block text-lime-500">Digital Magic</span>
+          <span className="block text-primary">Digital Magic</span>
         </h2>
 
         <div className="space-y-12">
@@ -344,12 +345,12 @@ const ScrollFollowingElement = () => {
               className="flex gap-6 group cursor-hover"
             >
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-lime-400 to-green-500 rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary-light to-primary-dark rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
                   {item.step}
                 </div>
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-lime-600 transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">{item.description}</p>
@@ -372,7 +373,7 @@ const ScrollFollowingElement = () => {
         >
           <div className="relative">
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-lime-200 to-green-200 rounded-[3rem] transform rotate-3 scale-110"
+              className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-300 rounded-[3rem] transform rotate-3 scale-110"
               animate={{
                 rotate: [3, -3, 3],
                 scale: [1.1, 1.15, 1.1],
@@ -384,7 +385,7 @@ const ScrollFollowingElement = () => {
               }}
             />
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-blue-200 to-purple-200 rounded-[3rem] transform -rotate-2 scale-105"
+              className="absolute inset-0 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-[3rem] transform -rotate-2 scale-105"
               animate={{
                 rotate: [-2, 2, -2],
                 scale: [1.05, 1.1, 1.05],
@@ -406,12 +407,12 @@ const ScrollFollowingElement = () => {
           </div>
 
           {/* Floating stats */}
-          <motion.div
+          {/* <motion.div
             className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 z-30"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
           >
-            <div className="text-2xl font-bold text-lime-600">99.9%</div>
+            <div className="text-2xl font-bold text-primary">99.9%</div>
             <div className="text-sm text-gray-600">Success Rate</div>
           </motion.div>
 
@@ -420,9 +421,9 @@ const ScrollFollowingElement = () => {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
           >
-            <div className="text-2xl font-bold text-blue-600">48h</div>
+            <div className="text-2xl font-bold text-primary">48h</div>
             <div className="text-sm text-gray-600">Avg Response</div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </div>
@@ -463,7 +464,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: any; index: numb
               <div>
                 <div className="font-semibold text-gray-900 text-lg">{testimonial.name}</div>
                 <div className="text-gray-600">{testimonial.role}</div>
-                <div className="text-lime-600 text-sm font-semibold">{testimonial.company}</div>
+                <div className="text-primary text-sm font-semibold">{testimonial.company}</div>
               </div>
             </div>
 
@@ -491,7 +492,7 @@ const FloatingLabelInput = ({ label, type = "text", error, required = false, ...
       <Input
         type={type}
         className={`bg-white border-2 ${
-          error ? "border-red-300 focus:border-red-500" : "border-gray-200 focus:border-lime-500"
+          error ? "border-red-300 focus:border-red-500" : "border-gray-200 focus:border-primary"
         } rounded-2xl py-4 px-4 text-base peer placeholder-transparent transition-colors duration-200`}
         placeholder=" "
         onFocus={() => setFocused(true)}
@@ -503,7 +504,7 @@ const FloatingLabelInput = ({ label, type = "text", error, required = false, ...
       />
       <motion.label
         className={`absolute left-4 pointer-events-none transition-all duration-200 ${
-          error ? "text-red-500" : focused ? "text-lime-600" : "text-gray-500"
+          error ? "text-red-500" : focused ? "text-primary" : "text-gray-500"
         }`}
         animate={{
           top: focused || hasValue ? "0.5rem" : "1rem",
@@ -606,18 +607,18 @@ const ContactForm = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.6 }}
-            className="w-20 h-20 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            className="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6"
           >
-            <CheckCircle className="h-10 w-10 text-lime-600" />
+            <CheckCircle className="h-10 w-10 text-primary" />
           </motion.div>
           <h3 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h3>
           <p className="text-gray-600 text-lg mb-6">
             Your message has been sent successfully. We'll get back to you within 24 hours.
           </p>
-          <div className="flex items-center justify-center space-x-2 text-lime-600">
-            <div className="w-2 h-2 bg-lime-600 rounded-full animate-bounce"></div>
-            <div className="w-2 h-2 bg-lime-600 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-            <div className="w-2 h-2 bg-lime-600 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+          <div className="flex items-center justify-center space-x-2 text-primary">
+            <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
           </div>
         </CardContent>
       </Card>
@@ -653,7 +654,7 @@ const ContactForm = () => {
                 value={formData.projectType}
                 onChange={(e) => handleChange("projectType", e.target.value)}
                 className={`w-full bg-white border-2 ${
-                  errors.projectType ? "border-red-300 focus:border-red-500" : "border-gray-200 focus:border-lime-500"
+                  errors.projectType ? "border-red-300 focus:border-red-500" : "border-gray-200 focus:border-primary"
                 } rounded-2xl py-4 px-4 text-base transition-colors duration-200 appearance-none cursor-pointer`}
               >
                 <option value="">Select Project Type *</option>
@@ -680,7 +681,7 @@ const ContactForm = () => {
               <select
                 value={formData.budget}
                 onChange={(e) => handleChange("budget", e.target.value)}
-                className="w-full bg-white border-2 border-gray-200 focus:border-lime-500 rounded-2xl py-4 px-4 text-base transition-colors duration-200 appearance-none cursor-pointer"
+                className="w-full bg-white border-2 border-gray-200 focus:border-primary rounded-2xl py-4 px-4 text-base transition-colors duration-200 appearance-none cursor-pointer"
               >
                 <option value="">Budget Range (Optional)</option>
                 <option value="under-5k">Under $5,000</option>
@@ -700,7 +701,7 @@ const ContactForm = () => {
               value={formData.message}
               onChange={(e) => handleChange("message", e.target.value)}
               className={`bg-white border-2 ${
-                errors.message ? "border-red-300 focus:border-red-500" : "border-gray-200 focus:border-lime-500"
+                errors.message ? "border-red-300 focus:border-red-500" : "border-gray-200 focus:border-primary"
               } rounded-2xl resize-none text-base transition-colors duration-200`}
             />
             <div className="absolute bottom-4 right-4 text-sm text-gray-400">{formData.message.length}/500</div>
@@ -719,8 +720,8 @@ const ContactForm = () => {
             type="submit"
             disabled={isSubmitting}
             className={`w-full ${
-              isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-lime-500 hover:bg-lime-600"
-            } text-white font-semibold py-5 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-lime-500/25 transition-all duration-300 group`}
+              isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary-dark"
+            } text-white font-semibold py-5 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group`}
           >
             {isSubmitting ? (
               <>
@@ -773,50 +774,86 @@ export default function HomePage() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div
-              className="text-3xl font-bold tracking-tight cursor-hover"
+              className="flex items-center cursor-hover"
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <span className="text-lime-500">Shri</span>
-              <span className="text-gray-900">nav</span>
+              <Image
+                src="https://darshan9121.github.io/Shrinav_official/assets/logo-DoN5Yaxp.jpg"
+                alt="Shrinav Logo"
+                width={40}
+                height={40}
+                className="rounded-lg mr-3"
+              />
+              <div className="text-3xl font-bold tracking-tight">
+                <span className="text-primary">Shrinav</span>
+              </div>
             </motion.div>
 
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               {["About", "Services", "Projects", "Contact"].map((item, index) => (
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-gray-700 hover:text-lime-500 transition-colors font-medium relative group cursor-hover"
+                  className="text-gray-700 hover:text-primary transition-colors font-medium relative group cursor-hover"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.5 }}
                   whileHover={{ y: -2 }}
                 >
                   {item}
-                  <motion.div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-lime-500 group-hover:w-full transition-all duration-300" />
+                  <motion.div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                 </motion.a>
               ))}
+              
             </div>
+              {/* Social Links */}
+              <div className="flex space-x-2 ml-4">
+                <motion.a
+                  href="https://wa.me/15551234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/company/shrinav"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <Users className="h-5 w-5" />
+                </motion.a>
+              </div>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
             >
               <Link href="/start-project">
-                <MagneticButton className="bg-lime-500 hover:bg-lime-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-lime-500/25 transition-all duration-300">
-                  Get Started
+                <MagneticButton className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300">
+                  
                 </MagneticButton>
               </Link>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </motion.nav>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <AnimatedBlob />
 
         <motion.div
@@ -828,16 +865,7 @@ export default function HomePage() {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <motion.div
-              className="mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <Badge className="bg-lime-100 text-lime-700 px-6 py-3 rounded-full text-base font-semibold">
-                🚀 Digital Innovation Studio
-              </Badge>
-            </motion.div>
+
 
             <motion.h1
               className="text-6xl md:text-8xl font-bold mb-8 leading-tight tracking-tight"
@@ -846,7 +874,7 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <span className="block text-gray-900">Transforming Ideas Into</span>
-              <span className="block bg-gradient-to-r from-lime-400 via-lime-500 to-green-500 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
                 Digital Success
               </span>
             </motion.h1>
@@ -867,15 +895,15 @@ export default function HomePage() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <MagneticButton className="bg-lime-500 hover:bg-lime-600 text-white font-semibold px-10 py-5 text-lg rounded-2xl shadow-xl hover:shadow-lime-500/25 transition-all duration-300 group">
+              <MagneticButton className="bg-primary flex hover:bg-primary-dark text-white font-semibold px-10 py-5 text-lg rounded-2xl shadow-xl hover:shadow-primary/25 transition-all duration-300 group">
                 <Rocket className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
                 Start Your Project
               </MagneticButton>
 
               <Link href="/start-project">
-                <MagneticButton className="border-2 border-lime-500 text-lime-600 hover:bg-lime-500 hover:text-white font-semibold px-10 py-5 text-lg rounded-2xl shadow-lg group transition-all duration-300">
-                  <Play className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
-                  Watch Our Story
+                <MagneticButton className="border-2 flex border-primary text-primary hover:bg-primary hover:text-white font-semibold px-10 py-5 text-lg rounded-2xl shadow-lg group transition-all duration-300">
+                  <Calendar className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+                  Contact Us
                 </MagneticButton>
               </Link>
             </motion.div>
@@ -890,7 +918,7 @@ export default function HomePage() {
               {[
                 { number: "150+", label: "Projects Delivered", icon: Rocket },
                 { number: "50+", label: "Happy Clients", icon: Heart },
-                { number: "7+", label: "Years Experience", icon: Award },
+                { number: "7+", label: "Projects in Progress", icon: Award },
                 { number: "99.9%", label: "Client Satisfaction", icon: Zap },
               ].map((stat, index) => (
                 <motion.div
@@ -901,8 +929,8 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  <stat.icon className="h-8 w-8 text-lime-500 mx-auto mb-3" />
-                  <div className="text-3xl md:text-4xl font-bold text-lime-600 mb-2">{stat.number}</div>
+                  <stat.icon className="h-8 w-8 text-primary mx-auto mb-3" />
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
                   <div className="text-gray-600 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
@@ -940,10 +968,10 @@ export default function HomePage() {
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-sm mb-6">Our Services</Badge>
+            <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg mb-6">Our Services</Badge>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
               Comprehensive Digital
-              <span className="block text-lime-500">Solutions</span>
+              <span className="block text-primary">Solutions</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               From concept to launch, we provide end-to-end digital services that drive growth and deliver exceptional
@@ -968,10 +996,10 @@ export default function HomePage() {
             animate={projectsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-sm mb-6">Featured Work</Badge>
+            <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg mb-6">Featured Work</Badge>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
               Projects That
-              <span className="block text-lime-500">Drive Results</span>
+              <span className="block text-primary">Drive Results</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Discover how we've helped businesses transform their digital presence and achieve remarkable growth.
@@ -991,12 +1019,12 @@ export default function HomePage() {
             animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-sm mb-6">
+            <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg mb-6">
               Client Success Stories
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
               What Our
-              <span className="block text-lime-500">Clients Say</span>
+              <span className="block text-primary">Clients Say</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Don't just take our word for it—hear from the businesses we've helped transform and grow.
@@ -1013,17 +1041,17 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section id="contact" ref={contactRef} className="py-32 bg-gradient-to-br from-gray-50 to-white relative">
-        <div className="container mx-auto px-6">
+        <div className="mx-auto px-4">
           <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 50 }}
             animate={contactInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-sm mb-6">Get In Touch</Badge>
+            <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm mb-6">Get In Touch</Badge>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
               Ready to Start
-              <span className="block text-lime-500">Your Project?</span>
+              <span className="block text-primary">Your Project?</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Let's discuss your vision and create something extraordinary together. We're here to turn your ideas into
@@ -1031,14 +1059,16 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-20 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 md:px-40 gap-20 max-w-full mx-auto">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               animate={contactInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 1 }}
             >
+
               <ContactForm />
+              
             </motion.div>
 
             {/* Contact Info */}
@@ -1059,14 +1089,14 @@ export default function HomePage() {
                     <motion.a
                       key={item.label}
                       href={item.href}
-                      className="flex items-center text-gray-600 hover:text-lime-600 transition-colors group cursor-hover"
+                      className="flex items-center text-gray-600 hover:text-primary transition-colors group cursor-hover"
                       initial={{ opacity: 0, x: 50 }}
                       animate={contactInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: index * 0.1 + 0.5 }}
                       whileHover={{ x: 10 }}
                     >
-                      <div className="w-16 h-16 bg-lime-100 rounded-2xl flex items-center justify-center mr-6 group-hover:bg-lime-200 group-hover:scale-110 transition-all duration-300">
-                        <item.icon className="h-8 w-8 text-lime-600" />
+                      <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mr-6 group-hover:bg-primary-200 group-hover:scale-110 transition-all duration-300">
+                        <item.icon className="h-8 w-8 text-primary" />
                       </div>
                       <div>
                         <div className="font-semibold text-gray-900 text-lg">{item.label}</div>
@@ -1082,15 +1112,15 @@ export default function HomePage() {
                 <h4 className="text-xl font-semibold text-gray-900 mb-6">Follow our journey</h4>
                 <div className="flex space-x-4">
                   {[
-                    { name: "WhatsApp", icon: MessageCircle, color: "hover:bg-green-500", href: "#" },
-                    { name: "LinkedIn", icon: Users, color: "hover:bg-blue-600", href: "#" },
-                    { name: "Instagram", icon: Palette, color: "hover:bg-pink-500", href: "#" },
-                    { name: "Facebook", icon: Globe, color: "hover:bg-blue-500", href: "#" },
+                    { name: "WhatsApp", icon: MessageCircle, color: "hover:bg-primary", href: "#" },
+                    { name: "LinkedIn", icon: Users, color: "hover:bg-primary", href: "#" },
+                    { name: "Instagram", icon: Palette, color: "hover:bg-primary", href: "#" },
+                    { name: "Facebook", icon: Globe, color: "hover:bg-primary", href: "#" },
                   ].map((social, index) => (
                     <motion.a
                       key={social.name}
                       href={social.href}
-                      className={`w-16 h-16 bg-lime-100 rounded-2xl flex items-center justify-center text-lime-600 hover:text-white transition-all duration-300 cursor-hover ${social.color}`}
+                      className={`w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-primary hover:text-white transition-all duration-300 cursor-hover ${social.color}`}
                       initial={{ opacity: 0, y: 50 }}
                       animate={contactInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ delay: index * 0.1 + 0.7 }}
@@ -1114,8 +1144,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="text-4xl font-bold mb-6">
-                <span className="text-lime-400">Shri</span>
-                <span className="text-white">nav</span>
+                <span className="text-primary">Shrinav</span>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Transforming ideas into digital success stories. We create exceptional experiences that drive growth and
@@ -1126,7 +1155,7 @@ export default function HomePage() {
                   <motion.a
                     key={index}
                     href="#"
-                    className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:text-lime-400 hover:bg-gray-700 transition-all duration-300 cursor-hover"
+                    className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:text-primary hover:bg-gray-700 transition-all duration-300 cursor-hover"
                     whileHover={{ scale: 1.1, y: -2 }}
                   >
                     <Icon className="h-6 w-6" />
@@ -1139,7 +1168,7 @@ export default function HomePage() {
               <ul className="space-y-3 text-gray-400">
                 {["Web Development", "App Development", "Digital Marketing", "Branding & Design"].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="hover:text-lime-400 transition-colors cursor-hover">
+                    <Link href="#" className="hover:text-primary transition-colors cursor-hover">
                       {item}
                     </Link>
                   </li>
@@ -1151,7 +1180,7 @@ export default function HomePage() {
               <ul className="space-y-3 text-gray-400">
                 {["About Us", "Our Team", "Careers", "Blog"].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="hover:text-lime-400 transition-colors cursor-hover">
+                    <Link href="#" className="hover:text-primary transition-colors cursor-hover">
                       {item}
                     </Link>
                   </li>

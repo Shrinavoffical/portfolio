@@ -84,8 +84,8 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
 
         // Set initial states
         gsap.set([title, description, tech, metrics], {
-          y: 30,
-          opacity: 0,
+          y: 0,
+          opacity: 1,
         })
 
         gsap.set(image, {
@@ -105,58 +105,15 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
           },
         })
 
-        // Animate elements in sequence
+        // Animate image only
         tl.to(image, {
           scale: 1,
           opacity: 1,
           duration: 0.8,
           ease: "power2.out",
         })
-          .to(
-            title,
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-            },
-            "-=0.4",
-          )
-          .to(
-            description,
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-            },
-            "-=0.3",
-          )
-          .to(
-            [metrics, tech],
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              stagger: 0.1,
-            },
-            "-=0.3",
-          )
 
-        // Fade out animation
-        gsap.to(project, {
-          opacity: 0.4,
-          scale: 0.98,
-          scrollTrigger: {
-            trigger: project,
-            start: "right 20%",
-            end: "right 0%",
-            scrub: 0.5,
-            horizontal: true,
-            containerAnimation: horizontalScroll,
-          },
-        })
+
       })
 
       // Progress indicator
@@ -191,7 +148,7 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
     <div ref={containerRef} className="horizontal-scroll-section relative bg-gradient-to-br from-gray-50 to-white">
       {/* Progress indicator */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-        <div className="scroll-progress h-full bg-lime-500 w-0"></div>
+        <div className="scroll-progress h-full bg-primary w-0"></div>
       </div>
 
       <div className="h-screen flex items-center overflow-hidden">
@@ -200,14 +157,14 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
             <div
               key={project.id}
               ref={(el) => addToRefs(el, index)}
-              className="flex-shrink-0 w-[500px] h-[650px] group cursor-pointer"
+              className="flex-shrink-0 w-[500px] h-[600px] group cursor-pointer"
             >
               <Card className="h-full border-0 bg-white shadow-xl hover:shadow-2xl transition-all duration-500 rounded-3xl overflow-hidden relative flex flex-col">
                 {/* Background gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.bgGradient} opacity-5`} />
 
                 {/* Project Image */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-100 overflow-hidden">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -232,12 +189,12 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
                 <CardContent className="project-content p-8 flex flex-col h-full">
                   <div className="flex-1">
                     {/* Project Title */}
-                    <h3 className="project-title text-2xl font-bold text-gray-900 mb-4 group-hover:text-lime-600 transition-colors duration-300">
+                    <h3 className="project-title text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h3>
 
                     {/* Project Description */}
-                    <p className="project-description text-gray-600 mb-6 leading-relaxed line-clamp-2">
+                    <p className="project-description text-gray-600 mb-6 leading-relaxed line-clamp-3">
                       {project.description}
                     </p>
 
@@ -246,36 +203,21 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
                       {Object.entries(project.metrics).map(([key, value]) => (
                         <div
                           key={key}
-                          className="text-center bg-gray-50 p-3 rounded-xl group-hover:bg-lime-50 transition-colors duration-300"
+                          className="text-center bg-gray-50 p-3 rounded-xl group-hover:bg-primary-50 transition-colors duration-300"
                         >
-                          <div className="text-lg font-bold text-lime-600 mb-1">{value}</div>
+                          <div className="text-lg font-bold text-primary mb-1">{value}</div>
                           <div className="text-xs text-gray-600 capitalize">{key}</div>
                         </div>
                       ))}
                     </div>
 
-                    {/* Tech Stack */}
-                    <div className="project-tech flex flex-wrap gap-2 mb-6">
-                      {project.technologies.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-lime-100 hover:text-lime-700 transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <span className="px-3 py-1 bg-gray-200 text-gray-600 rounded-full text-sm">
-                          +{project.technologies.length - 3}
-                        </span>
-                      )}
-                    </div>
+
                   </div>
 
                   {/* CTA Button */}
                   <div className="mt-auto">
                     <button
-                      className="w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold px-6 py-4 rounded-2xl transition-all duration-300 group/btn flex items-center justify-center shadow-lg hover:shadow-xl"
+                      className="w-full bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-4 rounded-2xl transition-all duration-300 group/btn flex items-center justify-center shadow-lg hover:shadow-xl"
                       onClick={() => (window.location.href = `/project/${project.id}`)}
                     >
                       View Project
@@ -294,7 +236,7 @@ export default function HorizontalScrollProjects({ data = { projects: [] } }) {
         <div className="text-gray-500 text-sm mb-2">Scroll to explore projects</div>
         <div className="flex items-center justify-center space-x-2">
           <div className="w-8 h-1 bg-gray-300 rounded-full">
-            <div className="w-2 h-1 bg-lime-500 rounded-full animate-pulse"></div>
+            <div className="w-2 h-1 bg-primary rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>

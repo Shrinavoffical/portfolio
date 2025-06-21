@@ -303,7 +303,7 @@ const ContactForm = ({ data }) => {
       <CardContent className="p-10">
         <h3 className="text-3xl font-bold text-gray-900 mb-8">Send us a message</h3>
         <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-6 gap-6">
             <div className="relative">
               <Input
                 placeholder="Your Name *"
@@ -612,7 +612,7 @@ const HomePage = () => {
       <section
         id="about"
         ref={aboutRef}
-        className="py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
+        className="py-32 bg-gradient-to-br container from-gray-50 to-white relative overflow-hidden"
       >
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -623,7 +623,7 @@ const HomePage = () => {
               transition={{ duration: 1 }}
               className="space-y-8"
             >
-              <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-sm">About Our Process</Badge>
+              <Badge className="bg-lime-100 text-lime-700 px-4 py-2 rounded-full text-md">About Our Process</Badge>
               <h2 className="text-5xl md:text-6xl font-bold leading-tight">
                 How We Create
                 <span className="block text-lime-500">Digital Magic</span>

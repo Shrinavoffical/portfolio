@@ -18,134 +18,109 @@ import {
   Zap,
   Target,
   BarChart3,
+  MessageCircle,
+  Globe,
+  Palette,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
+import siteData from "@/data/siteData.json"
 
-// Enhanced project data with detailed case studies
-const projectsData = {
-  1: {
-    id: 1,
-    title: "FinTech Revolution",
-    category: "Web Application",
-    client: "FinanceFlow Inc.",
-    duration: "8 months",
-    team: "6 developers",
-    year: "2024",
-    status: "Live",
-    description:
-      "A comprehensive financial platform with real-time analytics, automated trading, and AI-powered insights that transformed how users manage their investments.",
-    challenge:
-      "FinanceFlow needed a modern, secure platform to compete with established financial institutions while providing advanced analytics and automated trading capabilities for both novice and expert investors.",
-    solution:
-      "We developed a comprehensive fintech platform with real-time market data, AI-powered investment recommendations, automated portfolio rebalancing, and advanced security features including multi-factor authentication and end-to-end encryption.",
-    results: [
-      "300% increase in user engagement",
-      "50,000+ active users within 6 months",
-      "99.9% uptime reliability",
-      "$2M+ in managed assets",
-      "4.9/5 user satisfaction rating",
-    ],
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Redis", "AI/ML", "WebSocket", "Stripe", "AWS"],
-    features: [
-      "Real-time market data integration",
-      "AI-powered investment recommendations",
-      "Automated portfolio rebalancing",
-      "Advanced charting and analytics",
-      "Multi-factor authentication",
-      "Mobile-responsive design",
-      "API integrations with major exchanges",
-      "Compliance with financial regulations",
-    ],
-    images: {
-      hero: "/placeholder.svg?height=600&width=1200",
-      gallery: [
-        "/placeholder.svg?height=400&width=600",
-        "/placeholder.svg?height=400&width=600",
-        "/placeholder.svg?height=400&width=600",
-        "/placeholder.svg?height=400&width=600",
-      ],
-    },
-    testimonial: {
-      quote:
-        "Shrinav delivered beyond our expectations. The platform is not only beautiful but incredibly robust and secure. Our users love the intuitive interface and powerful features.",
-      author: "Sarah Johnson",
-      role: "CEO, FinanceFlow Inc.",
-      avatar: "/placeholder.svg?height=80&width=80",
-    },
-    metrics: {
-      users: "50K+",
-      growth: "300%",
-      rating: "4.9",
-      uptime: "99.9%",
-    },
-    liveUrl: "https://financeflow.demo",
-    githubUrl: "https://github.com/shrinav/fintech-platform",
-    color: "lime",
-    bgGradient: "from-lime-100 to-green-100",
-  },
-  2: {
-    id: 2,
-    title: "E-Commerce Empire",
-    category: "Mobile Application",
-    client: "ShopSmart Ltd.",
-    duration: "10 months",
-    team: "8 developers",
-    year: "2024",
-    status: "Live",
-    description:
-      "Multi-vendor marketplace with advanced recommendation engine and seamless payment integration that increased sales by 250%.",
-    challenge:
-      "ShopSmart needed a scalable mobile marketplace that could handle thousands of vendors while providing personalized shopping experiences and seamless payment processing.",
-    solution:
-      "We built a comprehensive mobile marketplace with AI-powered recommendations, multi-vendor management, real-time inventory tracking, and integrated payment solutions supporting multiple currencies and payment methods.",
-    results: [
-      "250% increase in sales",
-      "100,000+ active users",
-      "500+ registered vendors",
-      "4.8/5 app store rating",
-      "40% increase in user retention",
-    ],
-    technologies: ["React Native", "Node.js", "MongoDB", "Redis", "Stripe", "PayPal", "Firebase", "AWS"],
-    features: [
-      "Multi-vendor marketplace",
-      "AI-powered product recommendations",
-      "Real-time inventory management",
-      "Multiple payment gateways",
-      "Push notifications",
-      "Advanced search and filtering",
-      "Vendor analytics dashboard",
-      "Customer support chat",
-    ],
-    images: {
-      hero: "/placeholder.svg?height=600&width=1200",
-      gallery: [
-        "/placeholder.svg?height=400&width=600",
-        "/placeholder.svg?height=400&width=600",
-        "/placeholder.svg?height=400&width=600",
-        "/placeholder.svg?height=400&width=600",
-      ],
-    },
-    testimonial: {
-      quote:
-        "The mobile app exceeded all our expectations. The user experience is seamless, and our vendors love the comprehensive dashboard. Sales have skyrocketed since launch.",
-      author: "Michael Chen",
-      role: "CTO, ShopSmart Ltd.",
-      avatar: "/placeholder.svg?height=80&width=80",
-    },
-    metrics: {
-      users: "100K+",
-      growth: "250%",
-      rating: "4.8",
-      vendors: "500+",
-    },
-    liveUrl: "https://shopsmart.demo",
-    githubUrl: "https://github.com/shrinav/ecommerce-app",
-    color: "blue",
-    bgGradient: "from-blue-100 to-cyan-100",
-  },
-  // Add more projects as needed...
+// Image Slider Component with Auto-shuffle
+const ImageSlider = ({ images, title }: { images: string[]; title: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAutoPlay, setIsAutoPlay] = useState(true)
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }
+
+  useEffect(() => {
+    if (!isAutoPlay) return
+    
+    const interval = setInterval(nextSlide, 4000)
+    return () => clearInterval(interval)
+  }, [isAutoPlay, images.length])
+
+  return (
+    <div 
+      className="relative overflow-hidden rounded-3xl shadow-2xl group"
+      onMouseEnter={() => setIsAutoPlay(false)}
+      onMouseLeave={() => setIsAutoPlay(true)}
+    >
+      <div 
+        className="flex transition-all duration-700 ease-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+          <Image
+            key={index}
+            src={image || "/placeholder.svg"}
+            alt={`${title} - Image ${index + 1}`}
+            width={600}
+            height={400}
+            className="w-full h-96 object-cover flex-shrink-0"
+          />
+        ))}
+      </div>
+      
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+      >
+        <ArrowLeft className="h-5 w-5" />
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+      >
+        <ArrowLeft className="h-5 w-5 rotate-180" />
+      </button>
+      
+      {/* Dots indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+              index === currentIndex ? 'bg-primary scale-110' : 'bg-white/60 hover:bg-white/80'
+            }`}
+          />
+        ))}
+      </div>
+      
+      {/* Progress bar */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-black/20">
+        <div 
+          className="h-full bg-primary transition-all duration-700 ease-out"
+          style={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
+        />
+      </div>
+    </div>
+  )
+}
+
+// Create gallery images for each project
+const createProjectGallery = (mainImage: string, index: number) => {
+  const galleryImages = [
+    "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+  ]
+  
+  // Start with main image and add 3 more
+  return [mainImage, ...galleryImages.filter(img => img !== mainImage).slice(0, 3)]
 }
 
 export default function ProjectDetailPage() {
@@ -156,15 +131,26 @@ export default function ProjectDetailPage() {
 
   const heroY = useTransform(scrollYProgress, [0, 0.3], [0, -50])
 
-  const project = projectsData[params.id as string]
+  const projectIndex = parseInt(params.id as string) - 1
+  const project = siteData.projects[projectIndex]
+  
+  // Add gallery images to project
+  const projectWithGallery = project ? {
+    ...project,
+    images: {
+      hero: project.image,
+      gallery: createProjectGallery(project.image, projectIndex)
+    },
+    bgGradient: "from-primary-100 to-primary-200"
+  } : null
 
-  if (!project) {
+  if (!projectWithGallery) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
           <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
-          <Button onClick={() => router.push("/")} className="bg-lime-500 hover:bg-lime-600">
+          <Button onClick={() => router.push("/")} className="bg-primary hover:bg-primary-dark">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
@@ -179,15 +165,54 @@ export default function ProjectDetailPage() {
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-3xl font-bold tracking-tight">
-              <span className="text-lime-500">Shri</span>
-              <span className="text-gray-900">nav</span>
-            </Link>
+            <div className="flex items-center cursor-hover">
+              <Image
+                src="https://darshan9121.github.io/Shrinav_official/assets/logo-DoN5Yaxp.jpg"
+                alt="Shrinav Logo"
+                width={40}
+                height={40}
+                className="rounded-lg mr-3"
+              />
+              <Link href="/" className="text-3xl font-bold tracking-tight">
+                <span className="text-primary">Shrinav</span>
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center space-x-8">
+              {["About", "Services", "Projects", "Contact"].map((item, index) => (
+                <Link
+                  key={item}
+                  href={`/#${item.toLowerCase()}`}
+                  className="text-gray-700 hover:text-primary transition-colors font-medium relative group cursor-hover"
+                >
+                  {item}
+                </Link>
+              ))}
+              
+              <div className="flex space-x-2 ml-4">
+                <a
+                  href="https://wa.me/15551234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/shrinav"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                >
+                  <Users className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
 
             <Button
               onClick={() => router.push("/")}
               variant="outline"
-              className="border-lime-500 text-lime-600 hover:bg-lime-500 hover:text-white"
+              className="border-primary text-primary hover:bg-primary hover:text-white"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
@@ -202,39 +227,39 @@ export default function ProjectDetailPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
               <Badge
-                className={`bg-${project.color}-100 text-${project.color}-700 px-4 py-2 rounded-full text-sm mb-6`}
+                className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm mb-6"
               >
-                {project.category}
+                {projectWithGallery.category}
               </Badge>
 
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">{project.title}</h1>
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">{projectWithGallery.title}</h1>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">{project.description}</p>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">{projectWithGallery.description}</p>
 
               <div className="flex flex-wrap gap-4 mb-8">
                 <div className="flex items-center text-gray-600">
                   <Calendar className="h-5 w-5 mr-2" />
-                  {project.duration}
+                  {projectWithGallery.duration}
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Users className="h-5 w-5 mr-2" />
-                  {project.team}
+                  {projectWithGallery.team || '6 developers'}
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Award className="h-5 w-5 mr-2" />
-                  {project.year}
+                  {projectWithGallery.year}
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <Button className="bg-lime-500 hover:bg-lime-600 text-white px-8 py-3">
+                <Button className="bg-primary hover:bg-primary-dark text-white px-8 py-3">
                   <ExternalLink className="mr-2 h-4 w-4" />
                   View Live Site
                 </Button>
-                <Button variant="outline" className="border-gray-300 px-8 py-3">
+                {/* <Button variant="outline" className="border-gray-300 px-8 py-3">
                   <Github className="mr-2 h-4 w-4" />
                   View Code
-                </Button>
+                </Button> */}
               </div>
             </motion.div>
 
@@ -245,25 +270,21 @@ export default function ProjectDetailPage() {
               className="relative"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.bgGradient} rounded-3xl transform rotate-3 scale-105`}
+                className={`absolute inset-0 bg-gradient-to-br ${projectWithGallery.bgGradient} rounded-3xl transform rotate-3 scale-105`}
               />
-              <Image
-                src={project.images.hero || "/placeholder.svg"}
-                alt={project.title}
-                width={600}
-                height={400}
-                className="relative z-10 rounded-3xl shadow-2xl w-full"
-              />
+              <div className="relative z-10">
+                <ImageSlider images={projectWithGallery.images.gallery} title={projectWithGallery.title} />
+              </div>
             </motion.div>
           </div>
         </motion.div>
       </section>
 
       {/* Metrics Section */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {Object.entries(project.metrics).map(([key, value], index) => (
+            {Object.entries(projectWithGallery.metrics).map(([key, value], index) => (
               <motion.div
                 key={key}
                 initial={{ opacity: 0, y: 30 }}
@@ -272,46 +293,14 @@ export default function ProjectDetailPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center bg-gray-50 p-6 rounded-2xl"
               >
-                <div className="text-3xl font-bold text-lime-600 mb-2">{value}</div>
+                <div className="text-3xl font-bold text-primary mb-2">{value}</div>
                 <div className="text-gray-600 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</div>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Challenge & Solution */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="flex items-center mb-6">
-                <Target className="h-8 w-8 text-red-500 mr-4" />
-                <h2 className="text-3xl font-bold text-gray-900">The Challenge</h2>
-              </div>
-              <p className="text-gray-600 text-lg leading-relaxed">{project.challenge}</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="flex items-center mb-6">
-                <Zap className="h-8 w-8 text-lime-500 mr-4" />
-                <h2 className="text-3xl font-bold text-gray-900">Our Solution</h2>
-              </div>
-              <p className="text-gray-600 text-lg leading-relaxed">{project.solution}</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Features */}
       <section className="py-20 bg-white">
@@ -330,7 +319,7 @@ export default function ProjectDetailPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {project.features.map((feature, index) => (
+            {projectWithGallery.features.map((feature, index) => (
               <motion.div
                 key={feature}
                 initial={{ opacity: 0, y: 30 }}
@@ -339,7 +328,7 @@ export default function ProjectDetailPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-shadow duration-300"
               >
-                <CheckCircle className="h-6 w-6 text-lime-500 mb-4" />
+                <CheckCircle className="h-6 w-6 text-primary mb-4" />
                 <p className="text-gray-700 font-medium">{feature}</p>
               </motion.div>
             ))}
@@ -364,7 +353,7 @@ export default function ProjectDetailPage() {
           </motion.div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            {project.technologies.map((tech, index) => (
+            {projectWithGallery.technologies.map((tech, index) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -380,39 +369,35 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* Results */}
-      <section className="py-20 bg-white">
+      {/* Challenge & Solution */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="flex items-center justify-center mb-6">
-              <BarChart3 className="h-8 w-8 text-lime-500 mr-4" />
-              <h2 className="text-4xl font-bold text-gray-900">Results & Impact</h2>
-            </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Measurable outcomes that demonstrate the success of our solution
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center mb-6">
+                <Target className="h-8 w-8 text-red-500 mr-4" />
+                <h2 className="text-3xl font-bold text-gray-900">The Challenge</h2>
+              </div>
+              <p className="text-gray-600 text-lg leading-relaxed">{projectWithGallery.challenge}</p>
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {project.results.map((result, index) => (
-              <motion.div
-                key={result}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-lime-50 to-green-50 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300"
-              >
-                <TrendingUp className="h-8 w-8 text-lime-600 mx-auto mb-4" />
-                <p className="text-gray-700 font-semibold text-lg">{result}</p>
-              </motion.div>
-            ))}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="flex items-center mb-6">
+                <Zap className="h-8 w-8 text-primary mr-4" />
+                <h2 className="text-3xl font-bold text-gray-900">Our Solution</h2>
+              </div>
+              <p className="text-gray-600 text-lg leading-relaxed">{projectWithGallery.solution}</p>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -429,19 +414,19 @@ export default function ProjectDetailPage() {
           >
             <Card className="border-0 bg-white shadow-2xl rounded-3xl p-12">
               <CardContent className="p-0">
-                <div className="text-6xl text-lime-500 mb-6">"</div>
-                <p className="text-2xl text-gray-700 italic mb-8 leading-relaxed">{project.testimonial.quote}</p>
+                <div className="text-6xl text-primary mb-6">"</div>
+                <p className="text-2xl text-gray-700 italic mb-8 leading-relaxed">{projectWithGallery.testimonial?.quote}</p>
                 <div className="flex items-center justify-center">
                   <Image
-                    src={project.testimonial.avatar || "/placeholder.svg"}
-                    alt={project.testimonial.author}
+                    src={projectWithGallery.testimonial?.avatar || "/placeholder.svg"}
+                    alt={projectWithGallery.testimonial?.author || 'Client'}
                     width={80}
                     height={80}
                     className="rounded-full mr-6"
                   />
                   <div className="text-left">
-                    <div className="font-bold text-gray-900 text-xl">{project.testimonial.author}</div>
-                    <div className="text-gray-600">{project.testimonial.role}</div>
+                    <div className="font-bold text-gray-900 text-xl">{projectWithGallery.testimonial?.author}</div>
+                    <div className="text-gray-600">{projectWithGallery.testimonial?.role}</div>
                   </div>
                 </div>
               </CardContent>
@@ -451,7 +436,7 @@ export default function ProjectDetailPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-lime-500">
+      {/* <section className="py-20 bg-primary">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -460,14 +445,14 @@ export default function ProjectDetailPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
-            <p className="text-xl text-lime-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
               Let's discuss how we can help transform your ideas into digital success
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-lime-600 hover:bg-gray-100 px-8 py-3 text-lg">Start Your Project</Button>
+              <Button className="bg-white text-primary hover:bg-gray-100 px-8 py-3 text-lg">Start Your Project</Button>
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-lime-600 px-8 py-3 text-lg"
+                className="border-white text-white hover:bg-white hover:text-primary px-8 py-3 text-lg"
               >
                 <Play className="mr-2 h-5 w-5" />
                 View More Projects
@@ -475,7 +460,72 @@ export default function ProjectDetailPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black" />
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid md:grid-cols-4 gap-12">
+            <div>
+              <div className="text-4xl font-bold mb-6">
+                <span className="text-primary">Shrinav</span>
+              </div>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Transforming ideas into digital success stories. We create exceptional experiences that drive growth and
+                inspire innovation.
+              </p>
+              <div className="flex space-x-4">
+                {[MessageCircle, Users, Palette, Globe].map((Icon, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:text-primary hover:bg-gray-700 transition-all duration-300 cursor-hover"
+                  >
+                    <Icon className="h-6 w-6" />
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h5 className="font-semibold text-white mb-6 text-lg">Services</h5>
+              <ul className="space-y-3 text-gray-400">
+                {["Web Development", "App Development", "Digital Marketing", "Custom Software Development"].map((item) => (
+                  <li key={item}>
+                    <Link href="/#services" className="hover:text-primary transition-colors cursor-hover">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold text-white mb-6 text-lg">Company</h5>
+              <ul className="space-y-3 text-gray-400">
+                {["About Us", "Our Team", "Careers", "Blog"].map((item) => (
+                  <li key={item}>
+                    <Link href="/#about" className="hover:text-primary transition-colors cursor-hover">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold text-white mb-6 text-lg">Contact</h5>
+              <ul className="space-y-3 text-gray-400">
+                <li>hello@shrinav.com</li>
+                <li>+1 (555) 123-4567</li>
+                <li>123 Innovation Street</li>
+                <li>Tech City, TC 12345</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Shrinav. All rights reserved. Crafted with ❤️ for amazing businesses.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
