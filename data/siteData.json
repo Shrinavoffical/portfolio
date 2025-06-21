@@ -1,0 +1,434 @@
+{
+  "company": {
+    "name": "Shrinav",
+    "tagline": "Digital Innovation Studio",
+    "description": "We craft exceptional digital experiences that drive growth, engage audiences, and deliver measurable results for forward-thinking businesses.",
+    "contact": {
+      "email": "hello@shrinav.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Innovation Street, Tech City, TC 12345",
+      "socialLinks": {
+        "whatsapp": "#",
+        "linkedin": "#",
+        "instagram": "#",
+        "facebook": "#"
+      }
+    },
+    "stats": [
+      {
+        "number": "150+",
+        "label": "Projects Delivered",
+        "icon": "rocket"
+      },
+      {
+        "number": "50+",
+        "label": "Happy Clients",
+        "icon": "heart"
+      },
+      {
+        "number": "7+",
+        "label": "Years Experience",
+        "icon": "award"
+      },
+      {
+        "number": "99.9%",
+        "label": "Client Satisfaction",
+        "icon": "zap"
+      }
+    ]
+  },
+  "navigation": [
+    { "name": "About", "href": "#about" },
+    { "name": "Services", "href": "#services" },
+    { "name": "Projects", "href": "#projects" },
+    { "name": "Contact", "href": "#contact" }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "icon": "code",
+      "title": "Web Development",
+      "description": "Custom websites and web applications built with cutting-edge technologies for optimal performance and user experience.",
+      "features": ["React & Next.js", "TypeScript", "Performance Optimized", "SEO Ready"],
+      "gradient": "from-lime-400 to-green-500",
+      "hoverColor": "hover:bg-lime-50"
+    },
+    {
+      "id": 2,
+      "icon": "smartphone",
+      "title": "App Development",
+      "description": "Native and cross-platform mobile applications that deliver seamless experiences across all devices.",
+      "features": ["React Native", "Flutter", "iOS & Android", "App Store Ready"],
+      "gradient": "from-blue-400 to-cyan-500",
+      "hoverColor": "hover:bg-blue-50"
+    },
+    {
+      "id": 3,
+      "icon": "trending-up",
+      "title": "Digital Marketing",
+      "description": "Data-driven marketing strategies that boost your online presence and drive measurable business growth.",
+      "features": ["SEO & SEM", "Social Media", "Analytics", "Growth Hacking"],
+      "gradient": "from-purple-400 to-pink-500",
+      "hoverColor": "hover:bg-purple-50"
+    },
+    {
+      "id": 4,
+      "icon": "palette",
+      "title": "Branding & Design",
+      "description": "Cohesive brand identities and stunning UI/UX designs that convert visitors into loyal customers.",
+      "features": ["Brand Identity", "UI/UX Design", "Design Systems", "Prototyping"],
+      "gradient": "from-orange-400 to-red-500",
+      "hoverColor": "hover:bg-orange-50"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "FinTech Revolution",
+      "category": "Web Application",
+      "client": "FinanceFlow Inc.",
+      "duration": "8 months",
+      "team": "6 developers",
+      "year": "2024",
+      "status": "Live",
+      "description": "A comprehensive financial platform with real-time analytics, automated trading, and AI-powered insights that transformed how users manage their investments. This platform provides users with a seamless experience for managing their portfolios, tracking market trends, and making informed investment decisions.",
+      "challenge": "FinanceFlow needed a modern, secure platform to compete with established financial institutions while providing advanced analytics and automated trading capabilities for both novice and expert investors.",
+      "solution": "We developed a comprehensive fintech platform with real-time market data, AI-powered investment recommendations, automated portfolio rebalancing, and advanced security features including multi-factor authentication and end-to-end encryption.",
+      "results": [
+        "300% increase in user engagement",
+        "50,000+ active users within 6 months",
+        "99.9% uptime reliability",
+        "$2M+ in managed assets",
+        "4.9/5 user satisfaction rating"
+      ],
+      "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Redis", "AI/ML", "WebSocket", "Stripe", "AWS"],
+      "features": [
+        "Real-time market data integration",
+        "AI-powered investment recommendations",
+        "Automated portfolio rebalancing",
+        "Advanced charting and analytics",
+        "Multi-factor authentication",
+        "Mobile-responsive design",
+        "API integrations with major exchanges",
+        "Compliance with financial regulations"
+      ],
+      "image": "/placeholder.svg?height=600&width=800",
+      "metrics": { "users": "50K+", "growth": "300%", "rating": "4.9" },
+      "color": "lime",
+      "bgGradient": "from-lime-100 to-green-100",
+      "testimonial": {
+        "quote": "Shrinav delivered beyond our expectations. The platform is not only beautiful but incredibly robust and secure. Our users love the intuitive interface and powerful features.",
+        "author": "Sarah Johnson",
+        "role": "CEO, FinanceFlow Inc.",
+        "avatar": "/placeholder.svg?height=80&width=80"
+      },
+      "liveUrl": "https://financeflow.demo",
+      "githubUrl": "https://github.com/shrinav/fintech-platform"
+    },
+    {
+      "id": 2,
+      "title": "E-Commerce Empire",
+      "category": "Mobile Application",
+      "client": "ShopSmart Ltd.",
+      "duration": "10 months",
+      "team": "8 developers",
+      "year": "2024",
+      "status": "Live",
+      "description": "Multi-vendor marketplace with advanced recommendation engine and seamless payment integration that increased sales by 250%. This mobile application connects buyers and sellers from around the globe, offering a wide range of products and services.",
+      "challenge": "ShopSmart needed a scalable mobile marketplace that could handle thousands of vendors while providing personalized shopping experiences and seamless payment processing.",
+      "solution": "We built a comprehensive mobile marketplace with AI-powered recommendations, multi-vendor management, real-time inventory tracking, and integrated payment solutions supporting multiple currencies and payment methods.",
+      "results": [
+        "250% increase in sales",
+        "100,000+ active users",
+        "500+ registered vendors",
+        "4.8/5 app store rating",
+        "40% increase in user retention"
+      ],
+      "technologies": ["React Native", "Node.js", "MongoDB", "Redis", "Stripe", "PayPal", "Firebase", "AWS"],
+      "features": [
+        "Multi-vendor marketplace",
+        "AI-powered product recommendations",
+        "Real-time inventory management",
+        "Multiple payment gateways",
+        "Push notifications",
+        "Advanced search and filtering",
+        "Vendor analytics dashboard",
+        "Customer support chat"
+      ],
+      "image": "/placeholder.svg?height=600&width=800",
+      "metrics": { "users": "100K+", "growth": "250%", "rating": "4.8" },
+      "color": "blue",
+      "bgGradient": "from-blue-100 to-cyan-100",
+      "testimonial": {
+        "quote": "The mobile app exceeded all our expectations. The user experience is seamless, and our vendors love the comprehensive dashboard. Sales have skyrocketed since launch.",
+        "author": "Michael Chen",
+        "role": "CTO, ShopSmart Ltd.",
+        "avatar": "/placeholder.svg?height=80&width=80"
+      },
+      "liveUrl": "https://shopsmart.demo",
+      "githubUrl": "https://github.com/shrinav/ecommerce-app"
+    },
+    {
+      "id": 3,
+      "title": "Healthcare Connect",
+      "category": "Digital Platform",
+      "client": "MedTech Solutions",
+      "duration": "12 months",
+      "team": "10 developers",
+      "year": "2024",
+      "status": "Live",
+      "description": "HIPAA-compliant telemedicine platform connecting patients with healthcare providers globally, improving access to quality care. This digital platform enables patients to consult with doctors and specialists remotely, eliminating geographical barriers and reducing wait times.",
+      "challenge": "MedTech needed a secure, HIPAA-compliant platform that could handle video consultations, patient records, and prescription management while ensuring data privacy and security.",
+      "solution": "We developed a comprehensive telemedicine platform with secure video conferencing, electronic health records, prescription management, and appointment scheduling, all while maintaining strict HIPAA compliance.",
+      "results": [
+        "400% increase in patient consultations",
+        "25,000+ registered patients",
+        "1,000+ healthcare providers",
+        "4.9/5 patient satisfaction",
+        "60% reduction in wait times"
+      ],
+      "technologies": ["React", "WebRTC", "AWS", "Docker", "PostgreSQL", "Redis"],
+      "features": [
+        "Secure video consultations",
+        "Electronic health records",
+        "Prescription management",
+        "Appointment scheduling",
+        "HIPAA compliance",
+        "Multi-language support",
+        "Insurance integration",
+        "Mobile accessibility"
+      ],
+      "image": "/placeholder.svg?height=600&width=800",
+      "metrics": { "users": "25K+", "growth": "400%", "rating": "4.9" },
+      "color": "purple",
+      "bgGradient": "from-purple-100 to-pink-100",
+      "testimonial": {
+        "quote": "The platform has revolutionized how we deliver healthcare. Patients love the convenience, and doctors appreciate the comprehensive tools and seamless workflow.",
+        "author": "Dr. Emily Rodriguez",
+        "role": "Chief Medical Officer, MedTech Solutions",
+        "avatar": "/placeholder.svg?height=80&width=80"
+      },
+      "liveUrl": "https://healthcareconnect.demo",
+      "githubUrl": "https://github.com/shrinav/healthcare-platform"
+    },
+    {
+      "id": 4,
+      "title": "Smart Analytics",
+      "category": "SaaS Platform",
+      "client": "DataDriven Corp",
+      "duration": "6 months",
+      "team": "5 developers",
+      "year": "2024",
+      "status": "Live",
+      "description": "Advanced analytics dashboard with machine learning insights that helps businesses make data-driven decisions. This SaaS platform provides businesses with a comprehensive view of their data, enabling them to identify trends, patterns, and opportunities.",
+      "challenge": "DataDriven needed a powerful analytics platform that could process large datasets, provide real-time insights, and offer predictive analytics to help businesses make informed decisions.",
+      "solution": "We created an advanced analytics platform with machine learning algorithms, real-time data processing, customizable dashboards, and predictive modeling capabilities.",
+      "results": [
+        "180% increase in data processing speed",
+        "75,000+ active users",
+        "500+ enterprise clients",
+        "4.7/5 user satisfaction",
+        "35% improvement in decision accuracy"
+      ],
+      "technologies": ["Vue.js", "Python", "TensorFlow", "GCP", "BigQuery", "Kubernetes"],
+      "features": [
+        "Real-time data processing",
+        "Machine learning insights",
+        "Customizable dashboards",
+        "Predictive analytics",
+        "Data visualization",
+        "API integrations",
+        "White-label solutions",
+        "Enterprise security"
+      ],
+      "image": "/placeholder.svg?height=600&width=800",
+      "metrics": { "users": "75K+", "growth": "180%", "rating": "4.7" },
+      "color": "orange",
+      "bgGradient": "from-orange-100 to-red-100",
+      "testimonial": {
+        "quote": "Smart Analytics has transformed how we understand our data. The insights are incredibly accurate, and the platform is intuitive to use. It's become essential to our operations.",
+        "author": "James Wilson",
+        "role": "VP of Analytics, DataDriven Corp",
+        "avatar": "/placeholder.svg?height=80&width=80"
+      },
+      "liveUrl": "https://smartanalytics.demo",
+      "githubUrl": "https://github.com/shrinav/analytics-platform"
+    },
+    {
+      "id": 5,
+      "title": "Social Impact",
+      "category": "Non-Profit Platform",
+      "client": "Community Connect",
+      "duration": "4 months",
+      "team": "4 developers",
+      "year": "2024",
+      "status": "Live",
+      "description": "Community-driven platform that connects volunteers with local organizations, creating meaningful social impact. This non-profit platform empowers individuals to make a difference in their communities by connecting them with volunteer opportunities.",
+      "challenge": "Community Connect needed a platform to efficiently match volunteers with organizations based on skills, interests, and availability while tracking impact and engagement.",
+      "solution": "We developed a community platform with volunteer matching algorithms, impact tracking, event management, and social features to foster community engagement.",
+      "results": [
+        "220% increase in volunteer engagement",
+        "30,000+ registered volunteers",
+        "500+ partner organizations",
+        "4.9/5 user satisfaction",
+        "100,000+ volunteer hours logged"
+      ],
+      "technologies": ["React", "Firebase", "Stripe", "Maps API", "Node.js"],
+      "features": [
+        "Volunteer matching system",
+        "Impact tracking",
+        "Event management",
+        "Social networking",
+        "Donation processing",
+        "Mobile app",
+        "Organization dashboard",
+        "Community forums"
+      ],
+      "image": "/placeholder.svg?height=600&width=800",
+      "metrics": { "users": "30K+", "growth": "220%", "rating": "4.9" },
+      "color": "green",
+      "bgGradient": "from-green-100 to-emerald-100",
+      "testimonial": {
+        "quote": "This platform has revolutionized how we connect with volunteers. The matching system is incredibly effective, and we've seen unprecedented engagement in our community programs.",
+        "author": "Maria Garcia",
+        "role": "Director, Community Connect",
+        "avatar": "/placeholder.svg?height=80&width=80"
+      },
+      "liveUrl": "https://socialimpact.demo",
+      "githubUrl": "https://github.com/shrinav/social-impact-platform"
+    },
+    {
+      "id": 6,
+      "title": "EdTech Platform",
+      "category": "Educational Technology",
+      "client": "LearnSmart Academy",
+      "duration": "14 months",
+      "team": "12 developers",
+      "year": "2024",
+      "status": "Live",
+      "description": "Interactive learning platform with AI-powered personalization that improved student engagement by 400%. This educational technology platform provides students with a personalized learning experience, adapting to their individual needs and learning styles.",
+      "challenge": "LearnSmart needed a comprehensive learning platform that could adapt to individual student needs, provide interactive content, and track learning progress effectively.",
+      "solution": "We built an AI-powered educational platform with personalized learning paths, interactive content, progress tracking, and collaborative tools for students and educators.",
+      "results": [
+        "350% increase in student engagement",
+        "120,000+ active students",
+        "5,000+ educators",
+        "4.8/5 platform rating",
+        "85% improvement in learning outcomes"
+      ],
+      "technologies": ["React", "Node.js", "AI/ML", "WebRTC", "MongoDB", "AWS"],
+      "features": [
+        "AI-powered personalization",
+        "Interactive learning content",
+        "Progress tracking",
+        "Virtual classrooms",
+        "Assessment tools",
+        "Collaborative features",
+        "Parent dashboard",
+        "Offline learning support"
+      ],
+      "image": "/placeholder.svg?height=600&width=800",
+      "metrics": { "users": "120K+", "growth": "350%", "rating": "4.8" },
+      "color": "indigo",
+      "bgGradient": "from-indigo-100 to-blue-100",
+      "testimonial": {
+        "quote": "The platform has completely transformed our teaching approach. Students are more engaged than ever, and the personalized learning paths have significantly improved outcomes.",
+        "author": "Dr. Robert Kim",
+        "role": "Principal, LearnSmart Academy",
+        "avatar": "/placeholder.svg?height=80&width=80"
+      },
+      "liveUrl": "https://edtech.demo",
+      "githubUrl": "https://github.com/shrinav/edtech-platform"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "role": "CEO",
+      "company": "TechStart Inc.",
+      "content": "Shrinav transformed our vision into reality with exceptional attention to detail. Their team delivered a world-class product that exceeded all our expectations.",
+      "rating": 5,
+      "avatar": "/placeholder.svg?height=80&width=80",
+      "logo": "/placeholder.svg?height=40&width=120"
+    },
+    {
+      "id": 2,
+      "name": "Michael Chen",
+      "role": "CTO",
+      "company": "GrowthLab",
+      "content": "The expertise in both design and development is unmatched. They delivered a scalable solution that helped us achieve 300% growth in just 6 months.",
+      "rating": 5,
+      "avatar": "/placeholder.svg?height=80&width=80",
+      "logo": "/placeholder.svg?height=40&width=120"
+    },
+    {
+      "id": 3,
+      "name": "Emily Rodriguez",
+      "role": "Founder",
+      "company": "InnovateCorp",
+      "content": "Working with Shrinav was transformative. Their technical skills and creative approach helped us launch faster and more successfully than we imagined.",
+      "rating": 5,
+      "avatar": "/placeholder.svg?height=80&width=80",
+      "logo": "/placeholder.svg?height=40&width=120"
+    }
+  ],
+  "aboutProcess": [
+    {
+      "step": "01",
+      "title": "Discovery & Strategy",
+      "description": "We dive deep into understanding your business goals, target audience, and market landscape to create a comprehensive strategy."
+    },
+    {
+      "step": "02",
+      "title": "Design & Prototyping",
+      "description": "Our design team creates stunning visuals and interactive prototypes that bring your vision to life with pixel-perfect precision."
+    },
+    {
+      "step": "03",
+      "title": "Development & Testing",
+      "description": "Using cutting-edge technologies, we build robust, scalable solutions with rigorous testing to ensure flawless performance."
+    },
+    {
+      "step": "04",
+      "title": "Launch & Optimization",
+      "description": "We deploy your project with careful monitoring and continuous optimization to maximize performance and user satisfaction."
+    }
+  ],
+  "projectInquirySteps": [
+    {
+      "step": "01",
+      "title": "Share Your Vision",
+      "description": "Tell us about your project goals, requirements, and timeline",
+      "icon": "target"
+    },
+    {
+      "step": "02",
+      "title": "Strategy Session",
+      "description": "We'll schedule a call to discuss your needs and create a roadmap",
+      "icon": "zap"
+    },
+    {
+      "step": "03",
+      "title": "Proposal & Start",
+      "description": "Receive a detailed proposal and timeline to begin your project",
+      "icon": "rocket"
+    }
+  ],
+  "whyChooseUs": [
+    "7+ years of experience",
+    "150+ successful projects",
+    "99.9% client satisfaction",
+    "24/7 support & maintenance",
+    "Agile development process",
+    "Transparent communication"
+  ],
+  "footer": {
+    "description": "Transforming ideas into digital success stories. We create exceptional experiences that drive growth and inspire innovation.",
+    "sections": {
+      "services": ["Web Development", "App Development", "Digital Marketing", "Branding & Design"],
+      "company": ["About Us", "Our Team", "Careers", "Blog"]
+    },
+    "copyright": "© 2024 Shrinav. All rights reserved. Crafted with ❤️ for amazing businesses."
+  }
+}
