@@ -31,6 +31,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect, useState, useCallback } from "react"
 import HorizontalScrollProjects from "@/components/HorizontalScrollProjects"
+import siteData from "@/data/siteData.json"
 
 // Enhanced service data with better descriptions
 const services = [
@@ -978,7 +979,7 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <HorizontalScrollProjects />
+        <HorizontalScrollProjects data={siteData} />
       </section>
 
       {/* Testimonials Section */}
