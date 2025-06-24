@@ -193,39 +193,7 @@ const MagneticButton = ({ children, className = "", ...props }: any) => {
   )
 }
 
-// Animated Background Blob
-const AnimatedBlob = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <motion.div
-        className="absolute top-20 -right-20 w-96 h-96 bg-gradient-to-br from-primary-200 to-primary-300 rounded-full blur-3xl opacity-30"
-        animate={{
-          x: [0, 50, 0],
-          y: [0, -30, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 -left-20 w-80 h-80 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-full blur-3xl opacity-20"
-        animate={{
-          x: [0, -30, 0],
-          y: [0, 40, 0],
-          scale: [1, 0.9, 1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-    </div>
-  )
-}
+
 
 // Service Card Component with Enhanced Animations
 const ServiceCard = ({ service, index }: { service: any; index: number }) => {
@@ -294,7 +262,7 @@ const ScrollFollowingElement = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100])
 
   return (
-    <div ref={containerRef} className="section__content container grid lg:grid-cols-2 gap-16 items-start">
+    <div ref={containerRef} className="section__content container grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
       {/* Left side - scrolling content */}
       <motion.div
         initial={{ opacity: 0, x: -100 }}
@@ -303,8 +271,8 @@ const ScrollFollowingElement = () => {
         transition={{ duration: 1 }}
         className="space-y-8"
       >
-        <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg">About Our Process</Badge>
-        <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+        <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm sm:text-lg">About Our Process</Badge>
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-tight">
           How We Create
           <span className="block text-primary">Digital Magic</span>
         </h2>
@@ -372,31 +340,8 @@ const ScrollFollowingElement = () => {
           transition={{ duration: 1, delay: 0.3 }}
         >
           <div className="relative">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-300 rounded-[3rem] transform rotate-3 scale-110"
-              animate={{
-                rotate: [3, -3, 3],
-                scale: [1.1, 1.15, 1.1],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-[3rem] transform -rotate-2 scale-105"
-              animate={{
-                rotate: [-2, 2, -2],
-                scale: [1.05, 1.1, 1.05],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-300 rounded-[3rem] transform rotate-3 scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-[3rem] transform -rotate-2 scale-105" />
             <Image
               src="/placeholder.svg?height=700&width=600"
               alt="Our Process Visualization"
@@ -762,6 +707,13 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-hidden relative cursor-none">
+      {/* Optimized Animated Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200 rounded-full blur-3xl opacity-10 animate-float-slow" />
+        <div className="absolute top-1/3 -left-40 w-80 h-80 bg-secondary-200 rounded-full blur-3xl opacity-8 animate-float-medium" />
+        <div className="absolute bottom-20 right-20 w-64 h-64 bg-primary-100 rounded-full blur-2xl opacity-12 animate-float-fast" />
+      </div>
+      
       <CustomCursor />
 
       {/* Navigation */}
@@ -808,7 +760,6 @@ export default function HomePage() {
                 </motion.a>
               ))}
               
-            </div>
               {/* Social Links */}
               <div className="flex space-x-2 ml-4">
                 <motion.a
@@ -836,6 +787,19 @@ export default function HomePage() {
                   <Users className="h-5 w-5" />
                 </motion.a>
               </div>
+            </div>
+
+            {/* Mobile Get Started Button */}
+            <motion.div
+              className="md:hidden"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              <MagneticButton className="bg-primary hover:bg-primary-dark text-white font-semibold px-4 py-2 text-sm rounded-xl shadow-lg transition-all duration-300">
+                Get Started
+              </MagneticButton>
+            </motion.div>
 
             {/* <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -854,7 +818,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <AnimatedBlob />
+
 
         <motion.div
           className="container mx-auto px-6 text-center relative z-10"
@@ -868,7 +832,7 @@ export default function HomePage() {
 
 
             <motion.h1
-              className="text-6xl md:text-8xl font-bold mb-8 leading-tight tracking-tight"
+              className="text-4xl sm:text-6xl md:text-8xl font-bold mb-8 leading-tight tracking-tight"
               initial={{ opacity: 0, y: 50 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -880,7 +844,7 @@ export default function HomePage() {
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed px-4"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -890,19 +854,19 @@ export default function HomePage() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16 px-4"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <MagneticButton className="bg-primary flex hover:bg-primary-dark text-white font-semibold px-10 py-5 text-lg rounded-2xl shadow-xl hover:shadow-primary/25 transition-all duration-300 group">
-                <Rocket className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+              <MagneticButton className="bg-primary flex hover:bg-primary-dark text-white font-semibold px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-primary/25 transition-all duration-300 group w-full sm:w-auto">
+                <Rocket className="mr-2 sm:mr-3 h-5 sm:h-6 w-5 sm:w-6 group-hover:scale-110 transition-transform duration-300" />
                 Start Your Project
               </MagneticButton>
 
-              <Link href="/start-project">
-                <MagneticButton className="border-2 flex border-primary text-primary hover:bg-primary hover:text-white font-semibold px-10 py-5 text-lg rounded-2xl shadow-lg group transition-all duration-300">
-                  <Calendar className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+              <Link href="#contact" className="w-full sm:w-auto">
+                <MagneticButton className="border-2 flex justify-center border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg rounded-2xl shadow-lg group transition-all duration-300 w-full">
+                  <Calendar className="mr-2 sm:mr-3 h-5 sm:h-6 w-5 sm:w-6 group-hover:scale-110 transition-transform duration-300" />
                   Contact Us
                 </MagneticButton>
               </Link>
@@ -910,7 +874,7 @@ export default function HomePage() {
 
             {/* Enhanced Stats */}
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-8"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 px-4"
               initial={{ opacity: 0, y: 50 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 1 }}
@@ -969,7 +933,7 @@ export default function HomePage() {
             transition={{ duration: 1 }}
           >
             <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg mb-6">Our Services</Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
               Comprehensive Digital
               <span className="block text-primary">Solutions</span>
             </h2>
@@ -979,7 +943,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <ServiceCard key={service.title} service={service} index={index} />
             ))}
@@ -988,7 +952,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects Section with GSAP Horizontal Scroll */}
-      <section id="projects" ref={projectsRef}>
+      <section id="projects" ref={projectsRef} className="relative z-10">
         <div className="container mx-auto px-6 py-20">
           <motion.div
             className="text-center mb-20"
@@ -997,7 +961,7 @@ export default function HomePage() {
             transition={{ duration: 1 }}
           >
             <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg mb-6">Featured Work</Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
               Projects That
               <span className="block text-primary">Drive Results</span>
             </h2>
@@ -1022,7 +986,7 @@ export default function HomePage() {
             <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-lg mb-6">
               Client Success Stories
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
               What Our
               <span className="block text-primary">Clients Say</span>
             </h2>
@@ -1031,7 +995,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
             ))}
@@ -1049,7 +1013,7 @@ export default function HomePage() {
             transition={{ duration: 1 }}
           >
             <Badge className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm mb-6">Get In Touch</Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
               Ready to Start
               <span className="block text-primary">Your Project?</span>
             </h2>

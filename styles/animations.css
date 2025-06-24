@@ -1,0 +1,27 @@
+/* Optimized animations for better performance */
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(50px, -25px, 0) scale(1.1); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-40px, 30px, 0) scale(0.9); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-30px, -20px, 0) scale(1.2); }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 25s ease-in-out infinite 5s;
+}
+
+.animate-float-fast {
+  animation: float-fast 18s ease-in-out infinite 10s;
+}
