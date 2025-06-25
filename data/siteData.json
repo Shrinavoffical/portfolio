@@ -4,8 +4,8 @@
     "tagline": "Digital Innovation Studio",
     "description": "We craft exceptional digital experiences that drive growth, engage audiences, and deliver measurable results for forward-thinking businesses.",
     "contact": {
-      "email": "hello@shrinav.com",
-      "phone": "+1 (555) 123-4567",
+      "email": "shrinavjee@gmail.com",
+      "phone": "+917698563522",
       "address": "123 Innovation Street, Tech City, TC 12345",
       "socialLinks": {
         "whatsapp": "#",
@@ -106,7 +106,7 @@
       "Health data input forms"
     ],
     "image": "",
-    "metrics": { "Logo": "Java Logo", "Year": "2024", "rating": "4.6" },
+    "metrics": { "logo": "Python", "year": "2024", "rating": "4.6" },
     "color": "rose",
     "bgGradient": "from-rose-100 to-pink-100",
     "testimonial": null,
@@ -134,7 +134,7 @@
       "Responsive and mobile-friendly layout"
     ],
     "image": "",
-    "metrics": { "users": "9.2K+", "growth": "220%", "rating": "4.4" },
+    "metrics": { "logo": "Web", "year": "2024", "rating": "4.4" },
     "color": "yellow",
     "bgGradient": "from-yellow-100 to-orange-100",
     "testimonial": null,
@@ -162,7 +162,7 @@
       "Client document management"
     ],
     "image": "",
-    "metrics": { "users": "7.6K+", "growth": "180%", "rating": "4.3" },
+    "metrics": { "logo": "CRM", "year": "2024", "rating": "4.3" },
     "color": "gray",
     "bgGradient": "from-gray-100 to-neutral-100",
     "testimonial": null,
@@ -189,7 +189,7 @@
       "Lightweight browser extension"
     ],
     "image": "",
-    "metrics": { "users": "5.4K+", "growth": "210%", "rating": "4.7" },
+    "metrics": { "logo": "JS", "year": "2024", "rating": "4.7" },
     "color": "blue",
     "bgGradient": "from-blue-100 to-sky-100",
     "testimonial": null,
@@ -217,7 +217,7 @@
       "Clean menu-based UI"
     ],
     "image": "",
-    "metrics": { "users": "6.1K+", "growth": "170%", "rating": "4.5" },
+    "metrics": { "logo": "Java", "year": "2024", "rating": "4.5" },
     "color": "teal",
     "bgGradient": "from-teal-100 to-cyan-100",
     "testimonial": null,
@@ -339,7 +339,7 @@
     "Transparent communication"
   ],
   "footer": {
-    "description": "Transforming ideas into digital success stories. We create exceptional experiences that drive growth and inspire innovation.",
+    "description": "Where Imagination Meets Innovation stories. We create exceptional experiences that drive growth and inspire innovation.",
     "sections": {
       "services": ["Web Development", "App Development", "Digital Marketing", "Branding & Design"],
       "company": ["About Us", "Our Team", "Careers", "Blog"]

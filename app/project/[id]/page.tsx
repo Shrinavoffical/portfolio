@@ -27,45 +27,69 @@ import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
 import siteData from "@/data/siteData.json"
 
-// Image Slider Component with Auto-shuffle
-const ImageSlider = ({ images, title }: { images: string[]; title: string }) => {
+// Image/Video Slider Component
+const MediaSlider = ({ media, title }: { media: string[]; title: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlay, setIsAutoPlay] = useState(true)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length)
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + media.length) % media.length)
   }
 
+  // Check if current media is a video
+  const isVideo = (url: string) => {
+    return url.includes('.mp4') || url.includes('.webm') || url.includes('youtube.com') || url.includes('vimeo.com')
+  }
+
+  // Stop autoplay if current media is a video and it's playing
   useEffect(() => {
-    if (!isAutoPlay) return
+    if (isVideo(media[currentIndex])) {
+      setIsAutoPlay(false)
+    }
+  }, [currentIndex, media])
+
+  useEffect(() => {
+    if (!isAutoPlay || isVideoPlaying) return
     
     const interval = setInterval(nextSlide, 4000)
     return () => clearInterval(interval)
-  }, [isAutoPlay, images.length])
+  }, [isAutoPlay, isVideoPlaying, media.length])
 
   return (
     <div 
       className="relative overflow-hidden rounded-3xl shadow-2xl group"
       onMouseEnter={() => setIsAutoPlay(false)}
-      onMouseLeave={() => setIsAutoPlay(true)}
+      onMouseLeave={() => !isVideoPlaying && setIsAutoPlay(true)}
     >
       <div 
         className="flex transition-all duration-700 ease-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {images.map((image, index) => (
-          <Image
-            key={index}
-            src={image || "/placeholder.svg"}
-            alt={`${title} - Image ${index + 1}`}
-            width={600}
-            height={400}
-            className="w-full h-96 object-cover flex-shrink-0"
-          />
+        {media.map((src, index) => (
+          <div key={index} className="w-full h-96 flex-shrink-0">
+            {isVideo(src) ? (
+              <video 
+                src={src} 
+                className="w-full h-full object-cover"
+                controls
+                onPlay={() => setIsVideoPlaying(true)}
+                onPause={() => setIsVideoPlaying(false)}
+              />
+            ) : (
+              <Image
+                src={src || "/placeholder.svg"}
+                alt={`${title} - Image ${index + 1}`}
+                width={600}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
         ))}
       </div>
       
@@ -86,7 +110,7 @@ const ImageSlider = ({ images, title }: { images: string[]; title: string }) => 
       
       {/* Dots indicator */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {images.map((_, index) => (
+        {media.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
@@ -101,7 +125,7 @@ const ImageSlider = ({ images, title }: { images: string[]; title: string }) => 
       <div className="absolute bottom-0 left-0 w-full h-1 bg-black/20">
         <div 
           className="h-full bg-primary transition-all duration-700 ease-out"
-          style={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
+          style={{ width: `${((currentIndex + 1) / media.length) * 100}%` }}
         />
       </div>
     </div>
@@ -199,7 +223,7 @@ export default function ProjectDetailPage() {
                   <MessageCircle className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://linkedin.com/company/shrinav"
+                  href="https://www.linkedin.com/in/shrinav-digital-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
@@ -251,16 +275,7 @@ export default function ProjectDetailPage() {
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <Button className="bg-primary hover:bg-primary-dark text-white px-8 py-3">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  View Live Site
-                </Button>
-                {/* <Button variant="outline" className="border-gray-300 px-8 py-3">
-                  <Github className="mr-2 h-4 w-4" />
-                  View Code
-                </Button> */}
-              </div>
+              {/* Project buttons removed */}
             </motion.div>
 
             <motion.div
@@ -273,7 +288,7 @@ export default function ProjectDetailPage() {
                 className={`absolute inset-0 bg-gradient-to-br ${projectWithGallery.bgGradient} rounded-3xl transform rotate-3 scale-105`}
               />
               <div className="relative z-10">
-                <ImageSlider images={projectWithGallery.images.gallery} title={projectWithGallery.title} />
+                <MediaSlider media={projectWithGallery.images.gallery} title={projectWithGallery.title} />
               </div>
             </motion.div>
           </div>
@@ -402,38 +417,40 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <Card className="border-0 bg-white shadow-2xl rounded-3xl p-12">
-              <CardContent className="p-0">
-                <div className="text-6xl text-primary mb-6">"</div>
-                <p className="text-2xl text-gray-700 italic mb-8 leading-relaxed">{projectWithGallery.testimonial?.quote}</p>
-                <div className="flex items-center justify-center">
-                  <Image
-                    src={projectWithGallery.testimonial?.avatar || "/placeholder.svg"}
-                    alt={projectWithGallery.testimonial?.author || 'Client'}
-                    width={80}
-                    height={80}
-                    className="rounded-full mr-6"
-                  />
-                  <div className="text-left">
-                    <div className="font-bold text-gray-900 text-xl">{projectWithGallery.testimonial?.author}</div>
-                    <div className="text-gray-600">{projectWithGallery.testimonial?.role}</div>
+      {/* Testimonial - Only shown if testimonial exists */}
+      {projectWithGallery.testimonial && projectWithGallery.testimonial.quote && (
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <Card className="border-0 bg-white shadow-2xl rounded-3xl p-12">
+                <CardContent className="p-0">
+                  <div className="text-6xl text-primary mb-6">"</div>
+                  <p className="text-2xl text-gray-700 italic mb-8 leading-relaxed">{projectWithGallery.testimonial.quote}</p>
+                  <div className="flex items-center justify-center">
+                    <Image
+                      src={projectWithGallery.testimonial.avatar || "/placeholder.svg"}
+                      alt={projectWithGallery.testimonial.author || 'Client'}
+                      width={80}
+                      height={80}
+                      className="rounded-full mr-6"
+                    />
+                    <div className="text-left">
+                      <div className="font-bold text-gray-900 text-xl">{projectWithGallery.testimonial.author}</div>
+                      <div className="text-gray-600">{projectWithGallery.testimonial.role}</div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       {/* <section className="py-20 bg-primary">
@@ -446,7 +463,7 @@ export default function ProjectDetailPage() {
           >
             <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
             <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your ideas into digital success
+              Let's discuss how we can help transform your ideas into Meets Innovation
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-white text-primary hover:bg-gray-100 px-8 py-3 text-lg">Start Your Project</Button>
@@ -472,7 +489,7 @@ export default function ProjectDetailPage() {
                 <span className="text-primary">Shrinav</span>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
-                Transforming ideas into digital success stories. We create exceptional experiences that drive growth and
+                Where Imagination Meets Innovation stories. We create exceptional experiences that drive growth and
                 inspire innovation.
               </p>
               <div className="flex space-x-4">
@@ -514,8 +531,8 @@ export default function ProjectDetailPage() {
             <div>
               <h5 className="font-semibold text-white mb-6 text-lg">Contact</h5>
               <ul className="space-y-3 text-gray-400">
-                <li>hello@shrinav.com</li>
-                <li>+1 (555) 123-4567</li>
+                <li>shrinavjee@gmail.com</li>
+                <li>+917698563522</li>
                 <li>123 Innovation Street</li>
                 <li>Tech City, TC 12345</li>
               </ul>

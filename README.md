@@ -1,6 +1,6 @@
 # 🚀 Shrinav Portfolio
 
-> **Digital Innovation Studio** - Transforming ideas into exceptional digital experiences
+> **Digital Innovation Studio** - Where Imagination exceptional digital experiences
 
 A modern, responsive portfolio website showcasing digital innovation projects with smooth animations and professional design.
 
@@ -153,8 +153,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-- **Email**: hello@shrinav.com
-- **Phone**: +1 (555) 123-4567
+- **Email**: shrinavjee@gmail.com
+- **Phone**: +917698563522
 - **Website**: [shrinav.com](https://shrinav.com)
 
 ---

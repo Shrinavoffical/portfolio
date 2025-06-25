@@ -323,7 +323,7 @@ const ProjectDetailPage = () => {
           >
             <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
             <p className="text-xl text-lime-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your ideas into digital success
+              Let's discuss how we can help transform your ideas into Meets Innovation
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

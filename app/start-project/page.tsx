@@ -560,8 +560,8 @@ export default function StartProjectPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-8">Get in Touch</h3>
                 <div className="space-y-6">
                   {[
-                    { icon: Mail, text: "hello@shrinav.com", href: "mailto:hello@shrinav.com", label: "Email Us" },
-                    { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567", label: "Call Us" },
+                    { icon: Mail, text: "shrinavjee@gmail.com", href: "mailto:shrinavjee@gmail.com", label: "Email Us" },
+                    { icon: Phone, text: "+917698563522", href: "tel:+917698563522", label: "Call Us" },
                     { icon: MapPin, text: "123 Innovation Street, Tech City", href: "#", label: "Visit Us" },
                   ].map((item, index) => (
                     <motion.a
