@@ -106,60 +106,7 @@ const testimonials = [
   },
 ]
 
-// Custom Cursor Component
-const CustomCursor = () => {
-  const cursorX = useMotionValue(-100)
-  const cursorY = useMotionValue(-100)
-  const cursorXSpring = useSpring(cursorX, { damping: 25, stiffness: 700 })
-  const cursorYSpring = useSpring(cursorY, { damping: 25, stiffness: 700 })
 
-  const [isHovering, setIsHovering] = useState(false)
-
-  useEffect(() => {
-    let rafId: number
-
-    const moveCursor = (e: MouseEvent) => {
-      rafId = requestAnimationFrame(() => {
-        cursorX.set(e.clientX - 8)
-        cursorY.set(e.clientY - 8)
-      })
-    }
-
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
-    document.addEventListener("mousemove", moveCursor)
-
-    const interactiveElements = document.querySelectorAll('a, button, [role="button"], .cursor-hover')
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter)
-      el.addEventListener("mouseleave", handleMouseLeave)
-    })
-
-    return () => {
-      document.removeEventListener("mousemove", moveCursor)
-      if (rafId) cancelAnimationFrame(rafId)
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter)
-        el.removeEventListener("mouseleave", handleMouseLeave)
-      })
-    }
-  }, [cursorX, cursorY])
-
-  return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-50 mix-blend-difference"
-        style={{
-          translateX: cursorXSpring,
-          translateY: cursorYSpring,
-          scale: isHovering ? 2 : 1,
-        }}
-        transition={{ scale: { duration: 0.2 } }}
-      />
-    </>
-  )
-}
 
 // Magnetic Button Component
 const MagneticButton = ({ children, className = "", ...props }: any) => {
@@ -185,7 +132,7 @@ const MagneticButton = ({ children, className = "", ...props }: any) => {
       onMouseLeave={reset}
       animate={position}
       transition={{ type: "spring", stiffness: 150, damping: 15 }}
-      className={`cursor-hover ${className}`}
+      className={className}
       {...props}
     >
       {children}
@@ -205,7 +152,7 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group cursor-hover"
+      className="group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -310,7 +257,7 @@ const ScrollFollowingElement = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="flex gap-6 group cursor-hover"
+              className="flex gap-6 group"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-light to-primary-dark rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
@@ -385,7 +332,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: any; index: numb
       whileInView={{ opacity: 1, y: 0, rotate: rotation }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="cursor-hover"
+      className=""
     >
       <Card className="h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:rotate-0 rounded-3xl overflow-hidden max-w-md mx-auto">
         <CardContent className="p-8">
@@ -593,7 +540,7 @@ const ContactForm = () => {
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          {/* <div className="grid md:grid-cols-2 gap-6">
             <div className="relative">
               <select
                 value={formData.projectType}
@@ -637,7 +584,7 @@ const ContactForm = () => {
               </select>
               <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
             </div>
-          </div>
+          </div> */}
 
           <div className="relative">
             <Textarea
@@ -706,15 +653,14 @@ export default function HomePage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.8])
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-hidden relative cursor-none">
+    <div className="min-h-screen bg-white text-gray-900 overflow-hidden relative">
       {/* Optimized Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200 rounded-full blur-3xl opacity-10 animate-float-slow" />
         <div className="absolute top-1/3 -left-40 w-80 h-80 bg-secondary-200 rounded-full blur-3xl opacity-8 animate-float-medium" />
         <div className="absolute bottom-20 right-20 w-64 h-64 bg-primary-100 rounded-full blur-2xl opacity-12 animate-float-fast" />
       </div>
-      
-      <CustomCursor />
+
 
       {/* Navigation */}
       <motion.nav
@@ -726,7 +672,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div
-              className="flex items-center cursor-hover"
+              className="flex items-center"
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -749,7 +695,7 @@ export default function HomePage() {
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-gray-700 hover:text-primary transition-colors font-medium relative group cursor-hover"
+                  className="text-gray-700 hover:text-primary transition-colors font-medium relative group"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.5 }}
@@ -761,30 +707,59 @@ export default function HomePage() {
               ))}
               
               {/* Social Links */}
-              <div className="flex space-x-2 ml-4">
+              <div className="flex space-x-4 ml-4">
                 <motion.a
                   href="https://wa.me/15551234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                  </svg>
                 </motion.a>
                 <motion.a
                   href="https://linkedin.com/company/shrinav"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <Users className="h-5 w-5" />
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </motion.a>
+                <motion.a
+                  href="https://instagram.com/shrinav"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.618 5.367 11.986 11.988 11.986s11.987-5.368 11.987-11.986C24.014 5.367 18.635.001 12.017.001zm5.568 16.791c-.001.264-.106.52-.292.706-.187.187-.442.292-.706.292H7.239c-.264 0-.52-.105-.706-.292a.994.994 0 01-.292-.706V7.239c0-.264.106-.52.292-.706.187-.187.442-.292.706-.292h9.348c.264 0 .52.105.706.292.187.187.292.442.292.706v9.552z"/>
+                    <path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/>
+                  </svg>
+                </motion.a>
+                <motion.a
+                  href="mailto:hello@shrinav.com"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.9 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <Mail className="h-5 w-5" />
                 </motion.a>
               </div>
             </div>
@@ -861,7 +836,7 @@ export default function HomePage() {
             >
               <MagneticButton className="bg-primary flex hover:bg-primary-dark text-white font-semibold px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-primary/25 transition-all duration-300 group w-full sm:w-auto">
                 <Rocket className="mr-2 sm:mr-3 h-5 sm:h-6 w-5 sm:w-6 group-hover:scale-110 transition-transform duration-300" />
-                Start Your Project
+                View Projects
               </MagneticButton>
 
               <Link href="#contact" className="w-full sm:w-auto">
@@ -904,7 +879,7 @@ export default function HomePage() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-hover"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
         >
@@ -1053,7 +1028,7 @@ export default function HomePage() {
                     <motion.a
                       key={item.label}
                       href={item.href}
-                      className="flex items-center text-gray-600 hover:text-primary transition-colors group cursor-hover"
+                      className="flex items-center text-gray-600 hover:text-primary transition-colors group"
                       initial={{ opacity: 0, x: 50 }}
                       animate={contactInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: index * 0.1 + 0.5 }}
@@ -1084,7 +1059,7 @@ export default function HomePage() {
                     <motion.a
                       key={social.name}
                       href={social.href}
-                      className={`w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-primary hover:text-white transition-all duration-300 cursor-hover ${social.color}`}
+                      className={`w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-primary hover:text-white transition-all duration-300 ${social.color}`}
                       initial={{ opacity: 0, y: 50 }}
                       animate={contactInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ delay: index * 0.1 + 0.7 }}
@@ -1132,7 +1107,7 @@ export default function HomePage() {
               <ul className="space-y-3 text-gray-400">
                 {["Web Development", "App Development", "Digital Marketing", "Branding & Design"].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="hover:text-primary transition-colors cursor-hover">
+                    <Link href="#" className="hover:text-primary transition-colors">
                       {item}
                     </Link>
                   </li>
@@ -1144,7 +1119,7 @@ export default function HomePage() {
               <ul className="space-y-3 text-gray-400">
                 {["About Us", "Our Team", "Careers", "Blog"].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="hover:text-primary transition-colors cursor-hover">
+                    <Link href="#" className="hover:text-primary transition-colors">
                       {item}
                     </Link>
                   </li>

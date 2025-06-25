@@ -18,7 +18,7 @@ export default function ProjectsGrid({ data = { projects: [] } }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
+              className="group"
             >
               <Card className="h-full border-0 bg-white shadow-xl hover:shadow-2xl transition-all duration-500 rounded-3xl overflow-hidden hover:scale-105 hover:-translate-y-2 relative z-20">
                 {/* Project Image */}

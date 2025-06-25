@@ -106,7 +106,7 @@
       "Health data input forms"
     ],
     "image": "",
-    "metrics": { "users": "8.5K+", "growth": "240%", "rating": "4.6" },
+    "metrics": { "Logo": "Java Logo", "Year": "2024", "rating": "4.6" },
     "color": "rose",
     "bgGradient": "from-rose-100 to-pink-100",
     "testimonial": null,
@@ -143,7 +143,7 @@
   },
   {
     "id": 3,
-    "title": "ProReckon CRM Dashboard",
+    "title": "Loan Reckon CRM Dashboard",
     "category": "CRM Web Application",
     "client": "ProReckon",
     "duration": "8 months",

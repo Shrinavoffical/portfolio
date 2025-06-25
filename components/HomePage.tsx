@@ -205,8 +205,6 @@ const ContactForm = ({ data }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "",
-    budget: "",
     message: "",
   })
   const [errors, setErrors] = useState({})
@@ -224,10 +222,6 @@ const ContactForm = ({ data }) => {
       newErrors.email = "Email is required"
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email"
-    }
-
-    if (!formData.projectType) {
-      newErrors.projectType = "Please select a project type"
     }
 
     if (!formData.message.trim()) {
@@ -254,8 +248,6 @@ const ContactForm = ({ data }) => {
       setFormData({
         name: "",
         email: "",
-        projectType: "",
-        budget: "",
         message: "",
       })
     }, 3000)
@@ -329,7 +321,7 @@ const ContactForm = ({ data }) => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          {/* <div className="grid md:grid-cols-2 gap-6">
             <div className="relative">
               <select
                 value={formData.projectType}
@@ -366,7 +358,7 @@ const ContactForm = ({ data }) => {
               </select>
               <ChevronDownIcon className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
             </div>
-          </div>
+          </div> */}
 
           <div className="relative">
             <Textarea
