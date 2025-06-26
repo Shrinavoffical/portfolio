@@ -191,11 +191,12 @@ export default function ProjectDetailPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center cursor-hover">
               <Image
-                src="https://darshan9121.github.io/Shrinav_official/assets/logo-DoN5Yaxp.jpg"
+                src="/logo.jpg"
                 alt="Shrinav Logo"
                 width={40}
                 height={40}
                 className="rounded-lg mr-3"
+                priority
               />
               <Link href="/" className="text-3xl font-bold tracking-tight">
                 <span className="text-primary">Shrinav</span>

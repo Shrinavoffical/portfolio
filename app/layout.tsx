@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   title: "Shrinav - Digital Solutions & Code Craftsmanship",
   description:
     "Transform your ideas into powerful digital experiences. Professional web development, mobile apps, and digital solutions with clean code and modern technology.",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: '/logo.jpg',
+    apple: '/logo.jpg',
+  }
 }
 
 export default function RootLayout({

@@ -705,11 +705,12 @@ export default function HomePage() {
               transition={{ delay: 0.3 }}
             >
               <Image
-                src="https://darshan9121.github.io/Shrinav_official/assets/logo-DoN5Yaxp.jpg"
+                src="/logo.jpg"
                 alt="Shrinav Logo"
                 width={40}
                 height={40}
                 className="rounded-lg mr-3"
+                priority
               />
               <div className="text-3xl font-bold tracking-tight">
                 <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
