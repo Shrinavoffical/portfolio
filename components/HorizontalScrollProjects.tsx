@@ -73,7 +73,7 @@ export default function ProjectsGrid({ data = { projects: [] } }) {
                           </svg>
                         )}
                       </div>
-                      <div className="text-xs text-gray-600 mt-1">Tech</div>
+                      {/* <div className="text-xs text-gray-600 mt-1">Tech</div> */}
                     </div>
                     <div className="text-center bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300">
                       <div className="flex items-center justify-center">
@@ -85,7 +85,7 @@ export default function ProjectsGrid({ data = { projects: [] } }) {
                         </svg>
                         <div className="text-sm font-bold text-primary">{project.metrics.year}</div>
                       </div>
-                      <div className="text-xs text-gray-600 mt-1">Year</div>
+                      {/* <div className="text-xs text-gray-600 mt-1">Year</div> */}
                     </div>
                     <div className="text-center bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300">
                       <div className="flex items-center justify-center">
@@ -94,7 +94,7 @@ export default function ProjectsGrid({ data = { projects: [] } }) {
                           <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                         </svg>
                       </div>
-                      <div className="text-xs text-gray-600 mt-1">Rating</div>
+                      {/* <div className="text-xs text-gray-600 mt-1">Rating</div> */}
                     </div>
                   </div>
 

@@ -83,7 +83,7 @@ const testimonials = [
     content:
       "Shrinav transformed our vision into reality with exceptional attention to detail. Their team delivered a world-class product that exceeded all our expectations.",
     rating: 5,
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150",
     logo: "/placeholder.svg?height=40&width=120",
   },
   {
@@ -93,7 +93,7 @@ const testimonials = [
     content:
       "The expertise in both design and development is unmatched. They delivered a scalable solution that helped us achieve 300% growth in just 6 months.",
     rating: 5,
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150",
     logo: "/placeholder.svg?height=40&width=120",
   },
   {
@@ -103,7 +103,7 @@ const testimonials = [
     content:
       "Working with Shrinav was transformative. Their technical skills and creative approach helped us launch faster and more successfully than we imagined.",
     rating: 5,
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150",
     logo: "/placeholder.svg?height=40&width=120",
   },
 ]
@@ -278,7 +278,7 @@ const ScrollFollowingElement = () => {
       </motion.div>
 
       {/* Right side - sticky following element */}
-      <div className="lg:sticky lg:top-32 relative z-10">
+      <div className="lg:sticky lg:top-32 relative z-10 mt-16 lg:mt-0">
         <motion.div
           ref={imageRef}
           style={{ y }}
@@ -289,10 +289,18 @@ const ScrollFollowingElement = () => {
           transition={{ duration: 1, delay: 0.3 }}
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-300 rounded-[3rem] transform rotate-3 scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-[3rem] transform -rotate-2 scale-105" />
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-300 rounded-[3rem] transform rotate-3 scale-110" 
+              animate={{ rotate: [3, 5, 3], scale: [1.1, 1.15, 1.1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-[3rem] transform -rotate-2 scale-105" 
+              animate={{ rotate: [-2, -4, -2], scale: [1.05, 1.1, 1.05] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            />
             <Image
-              src="/placeholder.svg?height=700&width=600"
+              src="/whyshrinav.png"
               alt="Our Process Visualization"
               width={600}
               height={700}
@@ -348,13 +356,18 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: any; index: numb
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Image
-                src={testimonial.avatar || "/placeholder.svg"}
-                alt={testimonial.name}
-                width={60}
-                height={60}
-                className="rounded-full mr-4"
-              />
+              <div className="relative w-16 h-16 mr-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-400 rounded-full animate-pulse" />
+                <div className="absolute inset-0.5 bg-white rounded-full z-[1]"></div>
+                <Image
+                  src={testimonial.avatar || "/placeholder.svg"}
+                  alt={testimonial.name}
+                  width={60}
+                  height={60}
+                  className="rounded-full relative z-10 p-1.5 h-full w-full"
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                />
+              </div>
               <div>
                 <div className="font-semibold text-gray-900 text-lg">{testimonial.name}</div>
                 <div className="text-gray-600">{testimonial.role}</div>
@@ -699,7 +712,7 @@ export default function HomePage() {
                 className="rounded-lg mr-3"
               />
               <div className="text-3xl font-bold tracking-tight">
-                <span className="text-primary">Shrinav</span>
+                <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
               </div>
             </motion.div>
 
@@ -930,19 +943,25 @@ export default function HomePage() {
               ].map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className="text-center bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                  className={`text-center bg-gradient-to-br bg-opacity-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={heroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
-                  whileHover={{ y: -8, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)" }}
+                  whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+                  style={{ backgroundColor: `rgba(var(--${service.gradient.split('-')[2]})) opacity-0.1` }}
                 >
                   <div className="p-6 relative">
                     {/* Gradient overlay on hover */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                     
-                    <div className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <motion.div 
+                      className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center shadow-md`}
+                      whileHover={{ scale: 1.1 }}
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, delay: index * 0.3 }}
+                    >
                       <service.icon className="h-7 w-7 text-white" />
-                    </div>
+                    </motion.div>
                     
                     <h3 className="font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
                   </div>
@@ -1103,8 +1122,8 @@ export default function HomePage() {
                     { icon: Mail, text: "shrinavjee@gmail.com", href: "mailto:shrinavjee@gmail.com", label: "Email Us" },
                     { icon: Phone, text: "+917698563522", href: "tel:+917698563522", label: "Call Us" },
                     { icon: Phone, text: "+919016771335", href: "tel:+919016771335", label: "Call Us" },
-                    { icon: MapPin, text: "Red Dear, Canada", href: "#", label: "Visit Us" },
-                    { icon: MapPin, text: "New York, USA", href: "#", label: "Visit Us (US)" },
+                    { icon: MapPin, text: "Ahmedabad, Gujarat", href: "#", label: "Visit Us (India)" },
+                    { icon: MapPin, text: "Red Deer, Alberta, Canada", href: "#", label: "Visit Us (Canada)" },
                   ].map((item, index) => (
                     <motion.a
                       key={item.label}
@@ -1167,7 +1186,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="text-4xl font-bold mb-6">
-                <span className="text-primary">Shrinav</span>
+                <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Where Imagination Meets Innovation stories. We create exceptional experiences that drive growth and
