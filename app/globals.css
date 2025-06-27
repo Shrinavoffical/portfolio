@@ -36,7 +36,7 @@
     font-weight: 400;
     overflow-x: hidden;
     line-height: 1.6;
-    cursor: none;
+    /* cursor: none; */
   }
 }
 
@@ -72,9 +72,9 @@ textarea {
 }
 
 /* Custom cursor styles */
-body * {
+/* body * {
   cursor: none !important;
-}
+} */
 
 /* Smooth scrolling */
 html {
@@ -261,10 +261,10 @@ html {
     scroll-behavior: auto !important;
   }
 
-  body,
-  body * {
+  /* body, */
+  /* body * {
     cursor: auto !important;
-  }
+  } */
 
   .horizontal-scroll-section {
     height: auto;
@@ -273,10 +273,10 @@ html {
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
-  body,
-  body * {
+  /* body, */
+  /* body * {
     cursor: auto !important;
-  }
+  } */
 
   .text-6xl {
     font-size: 3rem;

@@ -74,7 +74,7 @@ const services = [
   },
 ]
 
-// Enhanced testimonials with company logos
+// Enhanced testimonials with ratings
 const testimonials = [
   {
     name: "Sarah Johnson",
@@ -83,8 +83,6 @@ const testimonials = [
     content:
       "Shrinav transformed our vision into reality with exceptional attention to detail. Their team delivered a world-class product that exceeded all our expectations.",
     rating: 5,
-    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150",
-    logo: "/placeholder.svg?height=40&width=120",
   },
   {
     name: "Michael Chen",
@@ -92,9 +90,7 @@ const testimonials = [
     company: "GrowthLab",
     content:
       "The expertise in both design and development is unmatched. They delivered a scalable solution that helped us achieve 300% growth in just 6 months.",
-    rating: 5,
-    avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150",
-    logo: "/placeholder.svg?height=40&width=120",
+    rating: 4.7,
   },
   {
     name: "Emily Rodriguez",
@@ -102,9 +98,7 @@ const testimonials = [
     company: "InnovateCorp",
     content:
       "Working with Shrinav was transformative. Their technical skills and creative approach helped us launch faster and more successfully than we imagined.",
-    rating: 5,
-    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150",
-    logo: "/placeholder.svg?height=40&width=120",
+    rating: 4.5,
   },
 ]
 
@@ -159,7 +153,7 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <Card
-        className={`h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-3 hover:rotate-1 rounded-3xl overflow-hidden ${service.hoverColor}`}
+        className={`h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-1 rounded-3xl overflow-hidden ${service.hoverColor}`}
       >
         <CardContent className="p-8 relative">
           {/* Gradient overlay on hover */}
@@ -346,42 +340,33 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: any; index: numb
     >
       <Card className="h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:rotate-0 rounded-3xl overflow-hidden max-w-md mx-auto">
         <CardContent className="p-8">
-          <div className="flex mb-6">
-            {[...Array(testimonial.rating)].map((_, i) => (
-              <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-            ))}
+          <div className="flex items-center mb-6">
+            <div className="flex">
+              {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
+                <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+              ))}
+              {testimonial.rating % 1 > 0 && (
+                <div className="relative">
+                  <Star className="h-5 w-5 text-gray-300 fill-current" />
+                  <div className="absolute top-0 left-0 overflow-hidden" style={{ width: `${(testimonial.rating % 1) * 100}%` }}>
+                    <Star className="h-5 w-5 text-yellow-400 fill-current" />
+                  </div>
+                </div>
+              )}
+            </div>
+            <span className="ml-2 text-sm font-semibold text-gray-700">{testimonial.rating.toFixed(1)}</span>
           </div>
 
           <p className="text-gray-600 mb-8 italic leading-relaxed text-lg">"{testimonial.content}"</p>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="relative w-16 h-16 mr-4">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-primary-400 rounded-full animate-pulse" />
-                <div className="absolute inset-0.5 bg-white rounded-full z-[1]"></div>
-                <Image
-                  src={testimonial.avatar || "/placeholder.svg"}
-                  alt={testimonial.name}
-                  width={60}
-                  height={60}
-                  className="rounded-full relative z-10 p-1.5 h-full w-full"
-                  style={{ objectFit: "cover", objectPosition: "center" }}
-                />
-              </div>
-              <div>
-                <div className="font-semibold text-gray-900 text-lg">{testimonial.name}</div>
+          <div className="mt-auto">
+            <div className="border-t border-gray-100 pt-4 mt-4">
+              <div className="font-semibold text-gray-900 text-lg">{testimonial.name}</div>
+              <div className="flex justify-between items-center">
                 <div className="text-gray-600">{testimonial.role}</div>
                 <div className="text-primary text-sm font-semibold">{testimonial.company}</div>
               </div>
             </div>
-
-            <Image
-              src={testimonial.logo || "/placeholder.svg"}
-              alt={`${testimonial.company} logo`}
-              width={80}
-              height={30}
-              className="opacity-60"
-            />
           </div>
         </CardContent>
       </Card>
@@ -679,7 +664,7 @@ export default function HomePage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.8])
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-hidden relative">
+    <div className="min-h-screen bg-white text-gray-900 overflow-hidden relative cursor-auto">
       {/* Optimized Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200 rounded-full blur-3xl opacity-10 animate-float-slow" />
@@ -750,7 +735,7 @@ export default function HomePage() {
                   </svg>
                 </motion.a> */}
                 <motion.a
-                  href="https://www.linkedin.com/in/shrinav-digital-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  href="https://www.linkedin.com/in/shrinav-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-primary transition-all duration-300"
@@ -845,7 +830,7 @@ export default function HomePage() {
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                     </svg>
                   </a>
-                  <a href="https://www.linkedin.com/in/shrinav-digital-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
+                  <a href="https://www.linkedin.com/in/shrinav-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
@@ -914,7 +899,7 @@ export default function HomePage() {
                 View Projects
               </MagneticButton> */}
 
-              <Link href="#project" className="w-full sm:w-auto">
+              <Link href="#projects" className="w-full sm:w-auto">
                 <MagneticButton className="bg-primary border-2 flex justify-center border-primary text-white hover:bg-primary hover:text-white font-semibold px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg rounded-2xl shadow-lg group transition-all duration-300 w-full">
                 <Rocket className="mr-2 sm:mr-3 h-5 sm:h-6 w-5 sm:w-6 group-hover:scale-110 transition-transform duration-300 " />
                   View Projects
@@ -1153,7 +1138,7 @@ export default function HomePage() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { name: "WhatsApp", href: "https://wa.me/+919016771335", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg> },
-                    { name: "LinkedIn", href: "https://www.linkedin.com/in/shrinav-digital-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+                    { name: "LinkedIn", href: "https://www.linkedin.com/in/shrinav-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
                     { name: "Facebook", href: "https://facebook.com/shrinav", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
                     { name: "Instagram", href: "https://www.instagram.com/shrinav._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.618 5.367 11.986 11.988 11.986s11.987-5.368 11.987-11.986C24.014 5.367 18.635.001 12.017.001zm5.568 16.791c-.001.264-.106.52-.292.706-.187.187-.442.292-.706.292H7.239c-.264 0-.52-.105-.706-.292a.994.994 0 01-.292-.706V7.239c0-.264.106-.52.292-.706.187-.187.442-.292.706-.292h9.348c.264 0 .52.105.706.292.187.187.292.442.292.706v9.552z"/><path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/></svg> },
                   ].map((social, index) => (
@@ -1196,7 +1181,7 @@ export default function HomePage() {
               <div className="flex space-x-4">
                 {[
                   { name: "WhatsApp", href: "https://wa.me/+919016771335", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg> },
-                  { name: "LinkedIn", href: "https://www.linkedin.com/in/shrinav-digital-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+                  { name: "LinkedIn", href: "https://www.linkedin.com/in/shrinav-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
                   { name: "Facebook", href: "https://facebook.com/shrinav", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
                   { name: "Instagram", href: "https://www.instagram.com/shrinav._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.618 5.367 11.986 11.988 11.986s11.987-5.368 11.987-11.986C24.014 5.367 18.635.001 12.017.001zm5.568 16.791c-.001.264-.106.52-.292.706-.187.187-.442.292-.706.292H7.239c-.264 0-.52-.105-.706-.292a.994.994 0 01-.292-.706V7.239c0-.264.106-.52.292-.706.187-.187.442-.292.706-.292h9.348c.264 0 .52.105.706.292.187.187.292.442.292.706v9.552z"/><path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/></svg> },
                 ].map((social, index) => (

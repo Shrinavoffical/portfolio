@@ -21,6 +21,11 @@ import {
   MessageCircle,
   Globe,
   Palette,
+  Cpu,
+  BrainCircuit,
+  Code,
+  Database,
+  Mail,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -133,18 +138,12 @@ const MediaSlider = ({ media, title }: { media: string[]; title: string }) => {
 }
 
 // Create gallery images for each project
-const createProjectGallery = (mainImage: string, index: number) => {
-  const galleryImages = [
-    "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-    "https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-    "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-    "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-    "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
-  ]
-  
-  // Start with main image and add 3 more
-  return [mainImage, ...galleryImages.filter(img => img !== mainImage).slice(0, 3)]
+const createProjectGallery = (project: any) => {
+  if (project.gallery && project.gallery.length > 0) {
+    return project.gallery
+  }
+  // Fallback to main image if no gallery is specified
+  return [project.image || '/placeholder.svg']
 }
 
 export default function ProjectDetailPage() {
@@ -162,10 +161,12 @@ export default function ProjectDetailPage() {
   const projectWithGallery = project ? {
     ...project,
     images: {
-      hero: project.image,
-      gallery: createProjectGallery(project.image, projectIndex)
+      hero: project.image || '/placeholder.svg',
+      gallery: createProjectGallery(project)
     },
-    bgGradient: "from-primary-100 to-primary-200"
+    bgGradient: "from-primary-100 to-primary-200",
+    technologies: project.technologies || [],
+    features: project.features || []
   } : null
 
   if (!projectWithGallery) {
@@ -184,12 +185,23 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white cursor-auto">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm">
+      <motion.nav
+        className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center cursor-hover">
+            <motion.div
+              className="flex items-center"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
               <Image
                 src="/logo.jpg"
                 alt="Shrinav Logo"
@@ -198,39 +210,68 @@ export default function ProjectDetailPage() {
                 className="rounded-lg mr-3"
                 priority
               />
-              <Link href="/" className="text-3xl font-bold tracking-tight">
-                <span className="text-primary">Shrinav</span>
-              </Link>
-            </div>
+              <div className="text-3xl font-bold tracking-tight">
+                <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
+              </div>
+            </motion.div>
 
             <div className="hidden md:flex items-center space-x-8">
               {["About", "Services", "Projects", "Contact"].map((item, index) => (
-                <Link
+                <motion.a
                   key={item}
                   href={`/#${item.toLowerCase()}`}
-                  className="text-gray-700 hover:text-primary transition-colors font-medium relative group cursor-hover"
+                  className="text-gray-700 hover:text-primary transition-colors font-medium relative group"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                  whileHover={{ y: -2 }}
                 >
                   {item}
-                </Link>
+                  <motion.div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                </motion.a>
               ))}
               
-              <div className="flex space-x-2 ml-4">
-                <a
-                  href="https://wa.me/15551234567"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                </a>
-                <a
+              {/* Social Links */}
+              <div className="flex space-x-4 ml-4">
+                <motion.a
                   href="https://www.linkedin.com/in/shrinav-digital-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 cursor-hover"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 }}
+                  whileHover={{ scale: 1.1 }}
                 >
-                  <Users className="h-5 w-5" />
-                </a>
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </motion.a>
+                <motion.a
+                  href="https://instagram.com/shrinav"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.618 5.367 11.986 11.988 11.986s11.987-5.368 11.987-11.986C24.014 5.367 18.635.001 12.017.001zm5.568 16.791c-.001.264-.106.52-.292.706-.187.187-.442.292-.706.292H7.239c-.264 0-.52-.105-.706-.292a.994.994 0 01-.292-.706V7.239c0-.264.106-.52.292-.706.187-.187.442-.292.706-.292h9.348c.264 0 .52.105.706.292.187.187.292.442.292.706v9.552z"/>
+                    <path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/>
+                  </svg>
+                </motion.a>
+                <motion.a
+                  href="mailto:shrinavjee@gmail.com"
+                  className="text-gray-600 hover:text-primary transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.9 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <Mail className="h-5 w-5" />
+                </motion.a>
               </div>
             </div>
 
@@ -244,7 +285,7 @@ export default function ProjectDetailPage() {
             </Button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
       <section ref={heroRef} className="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-white">
@@ -335,19 +376,31 @@ export default function ProjectDetailPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projectWithGallery.features.map((feature, index) => (
+            {projectWithGallery.features && projectWithGallery.features.length > 0 ? projectWithGallery.features.map((feature, index) => (
               <motion.div
                 key={feature}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-shadow duration-300"
+                className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               >
+                {index === 0 && feature.toLowerCase().includes('ai') ? (
+                <BrainCircuit className="h-6 w-6 text-primary mb-4" />
+              ) : index === 1 ? (
+                <Cpu className="h-6 w-6 text-primary mb-4" />
+              ) : index === 2 ? (
+                <Database className="h-6 w-6 text-primary mb-4" />
+              ) : index === 3 ? (
+                <Code className="h-6 w-6 text-primary mb-4" />
+              ) : (
                 <CheckCircle className="h-6 w-6 text-primary mb-4" />
+              )}
                 <p className="text-gray-700 font-medium">{feature}</p>
               </motion.div>
-            ))}
+            )) : (
+              <p className="text-gray-600 col-span-full text-center">No features specified for this project.</p>
+            )}
           </div>
         </div>
       </section>
@@ -369,7 +422,7 @@ export default function ProjectDetailPage() {
           </motion.div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            {projectWithGallery.technologies.map((tech, index) => (
+            {projectWithGallery.technologies && projectWithGallery.technologies.length > 0 ? projectWithGallery.technologies.map((tech, index) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -380,7 +433,9 @@ export default function ProjectDetailPage() {
               >
                 {tech}
               </motion.span>
-            ))}
+            )) : (
+              <p className="text-gray-600">No technologies specified for this project.</p>
+            )}
           </div>
         </div>
       </section>
@@ -487,30 +542,38 @@ export default function ProjectDetailPage() {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="text-4xl font-bold mb-6">
-                <span className="text-primary">Shrinav</span>
+                <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Where Imagination Meets Innovation stories. We create exceptional experiences that drive growth and
                 inspire innovation.
               </p>
               <div className="flex space-x-4">
-                {[MessageCircle, Users, Palette, Globe].map((Icon, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:text-primary hover:bg-gray-700 transition-all duration-300 cursor-hover"
+                {[
+                  { name: "WhatsApp", href: "https://wa.me/+919016771335", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg> },
+                  { name: "LinkedIn", href: "https://www.linkedin.com/in/shrinav-66a234365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+                  { name: "Facebook", href: "https://facebook.com/shrinav", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
+                  { name: "Instagram", href: "https://www.instagram.com/shrinav._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", svg: <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.618 5.367 11.986 11.988 11.986s11.987-5.368 11.987-11.986C24.014 5.367 18.635.001 12.017.001zm5.568 16.791c-.001.264-.106.52-.292.706-.187.187-.442.292-.706.292H7.239c-.264 0-.52-.105-.706-.292a.994.994 0 01-.292-.706V7.239c0-.264.106-.52.292-.706.187-.187.442-.292.706-.292h9.348c.264 0 .52.105.706.292.187.187.292.442.292.706v9.552z"/><path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/></svg> },
+                ].map((social, index) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:text-primary hover:bg-gray-700 transition-all duration-300"
+                    whileHover={{ scale: 1.1, y: -2 }}
                   >
-                    <Icon className="h-6 w-6" />
-                  </a>
+                    <div className="scale-75">{social.svg}</div>
+                  </motion.a>
                 ))}
               </div>
             </div>
             <div>
               <h5 className="font-semibold text-white mb-6 text-lg">Services</h5>
               <ul className="space-y-3 text-gray-400">
-                {["Web Development", "App Development", "Digital Marketing", "Custom Software Development"].map((item) => (
+                {["Web Development", "App Development", "Digital Marketing", "Branding & Design"].map((item) => (
                   <li key={item}>
-                    <Link href="/#services" className="hover:text-primary transition-colors cursor-hover">
+                    <Link href="/#services" className="hover:text-primary transition-colors">
                       {item}
                     </Link>
                   </li>
@@ -520,9 +583,9 @@ export default function ProjectDetailPage() {
             <div>
               <h5 className="font-semibold text-white mb-6 text-lg">Company</h5>
               <ul className="space-y-3 text-gray-400">
-                {["About Us", "Our Team", "Careers", "Blog"].map((item) => (
+                {["About Us", "Services", "Projects", "Blog"].map((item) => (
                   <li key={item}>
-                    <Link href="/#about" className="hover:text-primary transition-colors cursor-hover">
+                    <Link href={"/#"+item.toLowerCase()} className="hover:text-primary transition-colors">
                       {item}
                     </Link>
                   </li>
@@ -534,8 +597,7 @@ export default function ProjectDetailPage() {
               <ul className="space-y-3 text-gray-400">
                 <li>shrinavjee@gmail.com</li>
                 <li>+917698563522</li>
-                <li>123 Innovation Street</li>
-                <li>Tech City, TC 12345</li>
+                <li>Ahmedabad, Gujarat</li>
               </ul>
             </div>
           </div>

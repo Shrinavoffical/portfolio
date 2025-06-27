@@ -106,7 +106,8 @@
       "Health data input forms"
     ],
     "image": "/Heart.png",
-    "metrics": { "logo": "Python", "year": "2024", "rating": "4.6" },
+    "gallery": ["/Heart.png", "/Heart-2.png", "/Heart-3.png", "/Heart-4.png"],
+    "metrics": { "logo": "Model", "year": "2024", "rating": "4.6" },
     "color": "rose",
     "bgGradient": "from-rose-100 to-pink-100",
     "testimonial": null,
@@ -134,6 +135,7 @@
       "Responsive and mobile-friendly layout"
     ],
     "image": "/PET.png",
+    "gallery": ["/PET.png", "/Pet1.png", "/Pet2.png"],
     "metrics": { "logo": "Web", "year": "2024", "rating": "4.4" },
     "color": "yellow",
     "bgGradient": "from-yellow-100 to-orange-100",
@@ -143,7 +145,7 @@
   },
   {
     "id": 3,
-    "title": "Loan Reckon CRM Dashboard",
+    "title": "Loan CRM Dashboard",
     "category": "CRM Web Application",
     "client": "ProReckon",
     "duration": "8 months",
@@ -161,7 +163,8 @@
       "Loan lifecycle tracking",
       "Client document management"
     ],
-    "image": "",
+    "image": "/CRM1.png",
+    "gallery": ["/CRM1.png", "/CRM2.png", "/CRM4.png", "/CRM.png"],
     "metrics": { "logo": "CRM", "year": "2024", "rating": "4.3" },
     "color": "gray",
     "bgGradient": "from-gray-100 to-neutral-100",
@@ -189,7 +192,8 @@
       "Lightweight browser extension"
     ],
     "image": "/Spam.png",
-    "metrics": { "logo": "JS", "year": "2024", "rating": "4.7" },
+    "gallery": ["/Spam.png"],
+    "metrics": { "logo": "Web", "year": "2024", "rating": "4.7" },
     "color": "blue",
     "bgGradient": "from-blue-100 to-sky-100",
     "testimonial": null,
@@ -217,42 +221,48 @@
       "Clean menu-based UI"
     ],
     "image": "",
-    "metrics": { "logo": "Java", "year": "2024", "rating": "4.5" },
+    "gallery": [],
+    "metrics": { "logo": "App", "year": "2024", "rating": "4.5" },
     "color": "teal",
     "bgGradient": "from-teal-100 to-cyan-100",
     "testimonial": null,
     "liveUrl": "",
     "githubUrl": ""
   },
-  {
-    "id": 6,
-    "title": "Inventory Tracker Lite",
-    "category": "Inventory Management",
-    "client": "WarehouseX Pvt Ltd.",
-    "duration": "7 months",
-    "team": "5 developers",
+{
+  "id": 6,
+  "title": "Inventory Tracker Lite",
+  "category": "Inventory Management",
+  "client": "WarehouseX Pvt Ltd.",
+  "duration": "7 months",
+  "team": "5 developers",
+  "year": "2024",       
+  "status": "Live",
+  "description": "A lightweight inventory tracker designed for small businesses, with live stock status, reorder alerts, and exportable reports.",
+  "challenge": "Give small teams a way to manage inventory without complex ERP software.",
+  "solution": "Created a simple web app with CRUD stock management, barcode integration, and CSV export for inventory reports.",
+  "results": [],
+  "technologies": ["React", "Node.js", "Express", "MongoDB"],
+  "features": [
+    "Stock tracking dashboard",
+    "Barcode scanning support",
+    "Reorder alerts",
+    "CSV export",
+    "User roles for inventory staff"
+  ],
+  "image": "",
+  "metrics": {
+    "logo": "Model",           
     "year": "2024",
-    "status": "Live",
-    "description": "A lightweight inventory tracker designed for small businesses, with live stock status, reorder alerts, and exportable reports.",
-    "challenge": "Give small teams a way to manage inventory without complex ERP software.",
-    "solution": "Created a simple web app with CRUD stock management, barcode integration, and CSV export for inventory reports.",
-    "results": [],
-    "technologies": ["React", "Node.js", "Express", "MongoDB"],
-    "features": [
-      "Stock tracking dashboard",
-      "Barcode scanning support",
-      "Reorder alerts",
-      "CSV export",
-      "User roles for inventory staff"
-    ],
-    "image": "",
-    "metrics": { "users": "9.8K+", "growth": "230%", "rating": "4.2" },
-    "color": "emerald",
-    "bgGradient": "from-emerald-100 to-green-100",
-    "testimonial": null,
-    "liveUrl": "",
-    "githubUrl": ""
-  }
+    "rating": "4.2"
+  },
+  "color": "emerald",
+  "bgGradient": "from-emerald-100 to-green-100",
+  "testimonial": null,
+  "liveUrl": "",
+  "githubUrl": ""
+}
+
 ]
 
 ,
