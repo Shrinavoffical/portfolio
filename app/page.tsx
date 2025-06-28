@@ -471,58 +471,112 @@ const ContactForm = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+//   const handleSubmit = async (e) => {
+//     e.preventDefault()
 
-    // if (!validateForm()) return
+//     // if (!validateForm()) return
     
-    setIsSubmitting(true)
-    console.log("Form Data submitting")
+//     setIsSubmitting(true)
+//     console.log("Form Data submitting")
+
+//   const payload = new URLSearchParams();
+//   payload.append("entry.716092560", formData.name);
+//   payload.append("entry.1416580929", formData.email);
+//   payload.append("entry.938952601", formData.mobile);
+//   payload.append("entry.1864823807", formData.message);
+
+//     // Submit to Google Forms
+// fetch(
+//       "https://docs.google.com/forms/d/e/1FAIpQLSfAiiMhMx4nVVveM_3sl-CxIhK38c8mDP1-8Ih05BlT6ykr7Q/formResponse",
+//       {
+//         method: "POST",
+//         mode: "no-cors",
+//         headers: {
+//           "Content-Type": "application/x-www-form-urlencoded",
+//         },
+//         body: payload.toString(),
+//       }
+//     ).then((response)=>{
+//       console.log(response)
+//     }).catch((error)=>{
+//       console.error("Error submitting form:", error)
+//       setIsSubmitting(false)
+//       setErrors({ submit: "Failed to send message. Please try again later." })
+//       return
+//     })
+
+//     setTimeout(() => {
+//       setIsSubmitting(false)
+//       setIsSubmitted(true)
+//     }, 1000)
+
+
+
+//     // Reset form after 3 seconds
+//     setTimeout(() => {
+//       setIsSubmitted(false)
+//       setFormData({
+//         name: "",
+//         email: "",
+//         mobile: "",
+//         message: "",
+//       })
+//     }, 3000)
+//   }
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  setIsSubmitting(true);
+  console.log("Form Data submitting");
 
   const payload = new URLSearchParams();
-  payload.append("entry.716092560", formData.name);
-  payload.append("entry.1416580929", formData.email);
-  payload.append("entry.938952601", formData.mobile);
-  payload.append("entry.1864823807", formData.message);
+  payload.append("entry.39892063", formData.name);         // Name
+  payload.append("entry.1514859323", formData.email);       // Email
+  payload.append("entry.1913273510", formData.mobile);      // Phone
+  payload.append("entry.1603319694", formData.message);     // Message
 
-    // Submit to Google Forms
-fetch(
-      "https://docs.google.com/forms/d/e/1FAIpQLSfAiiMhMx4nVVveM_3sl-CxIhK38c8mDP1-8Ih05BlT6ykr7Q/formResponse",
-      {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: payload.toString(),
-      }
-    ).then((response)=>{
-      console.log(response)
-    }).catch((error)=>{
-      console.error("Error submitting form:", error)
-      setIsSubmitting(false)
-      setErrors({ submit: "Failed to send message. Please try again later." })
-      return
+  // Submit to Google Forms
+  fetch(
+    "https://docs.google.com/forms/d/e/1FAIpQLSd7ZCf-jDG-Drhdfm_hxViScEqo-7By_E8ttBEzKKi6RoiCpg/formResponse",
+    {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: payload.toString(),
+    }
+  )
+    .then((response) => {
+      console.log("Form submitted (opaque):", response);
     })
+    .catch((error) => {
+      console.error("Error submitting form:", error);
+      setIsSubmitting(false);
+      setErrors({
+        submit: "Failed to send message. Please try again later.",
+      });
+      return;
+    });
 
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 1000)
+  setTimeout(() => {
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  }, 1000);
 
+  // Reset form after 3 seconds
+  setTimeout(() => {
+    setIsSubmitted(false);
+    setFormData({
+      name: "",
+      email: "",
+      mobile: "",
+      message: "",
+    });
+  }, 3000);
+};
 
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        name: "",
-        email: "",
-        mobile: "",
-        message: "",
-      })
-    }, 3000)
-  }
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
