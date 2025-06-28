@@ -1225,15 +1225,15 @@ export default function HomePage() {
             <div>
               <h5 className="font-semibold text-white mb-6 text-lg">Contact</h5>
               <ul className="space-y-3 text-gray-400">
-                <li>shrinavjee@gmail.com</li>
-                <li>+917698563522</li>
+                <li><a href="mailto:shrinavjee@gmail.com"> shrinavjee@gmail.com</a></li>
+                <li><a href="tel:+917698563522">+917698563522 </a></li>
                 {/* <li></li> */}
                 <li>Ahmedabad, Gujarat</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Shrinav. All rights reserved. Crafted with ❤️ for amazing businesses.</p>
+            <p>© 2024 Shrinav. All rights reserved. Empowering digital excellence.</p>
           </div>
         </div>
       </footer>
