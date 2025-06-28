@@ -106,7 +106,7 @@
       "Health data input forms"
     ],
     "image": "/Heart.png",
-    "gallery": ["/Heart.png", "/Heart-2.png", "/Heart-3.png", "/Heart-4.png"],
+    "gallery": ["/Heart.png","/Heart.mp4",  "/Heart-3.png", "/Heart-4.png"],
     "metrics": { "logo": "Model", "year": "2024", "rating": "4.6" },
     "color": "rose",
     "bgGradient": "from-rose-100 to-pink-100",
@@ -135,7 +135,7 @@
       "Responsive and mobile-friendly layout"
     ],
     "image": "/PET.png",
-    "gallery": ["/PET.png", "/Pet1.png", "/Pet2.png"],
+    "gallery": ["/PET.png","/Pet_care.png", "/Pet1.png", "/Pet2.png"],
     "metrics": { "logo": "Web", "year": "2024", "rating": "4.4" },
     "color": "yellow",
     "bgGradient": "from-yellow-100 to-orange-100",
@@ -220,7 +220,7 @@
       "Update/delete support",
       "Clean menu-based UI"
     ],
-    "image": "",
+    "image": "/StudentManagement1.jpeg",
     "gallery": [],
     "metrics": { "logo": "App", "year": "2024", "rating": "4.5" },
     "color": "teal",
@@ -229,39 +229,55 @@
     "liveUrl": "",
     "githubUrl": ""
   },
-{
+  {
   "id": 6,
-  "title": "Inventory Tracker Lite",
-  "category": "Inventory Management",
-  "client": "WarehouseX Pvt Ltd.",
-  "duration": "7 months",
-  "team": "5 developers",
-  "year": "2024",       
-  "status": "Live",
-  "description": "A lightweight inventory tracker designed for small businesses, with live stock status, reorder alerts, and exportable reports.",
-  "challenge": "Give small teams a way to manage inventory without complex ERP software.",
-  "solution": "Created a simple web app with CRUD stock management, barcode integration, and CSV export for inventory reports.",
-  "results": [],
-  "technologies": ["React", "Node.js", "Express", "MongoDB"],
-  "features": [
-    "Stock tracking dashboard",
-    "Barcode scanning support",
-    "Reorder alerts",
-    "CSV export",
-    "User roles for inventory staff"
+  "title": "Virtual Art Gallery",
+  "category": "Art & Exhibition Platform",
+  "client": "Curated Arts Collective",
+  "duration": "3 months",
+  "team": "4 developers",
+  "year": "2025",
+  "status": "In Progress",
+  "description": "A visually immersive online platform to showcase, manage, and purchase curated artworks from independent artists and galleries.",
+  "challenge": "Create a high-performance image-first platform that allows users to browse and manage digital exhibitions with minimal latency and high visual fidelity.",
+  "solution": "Built a React + Tailwind frontend with seamless image loading, implemented secure image uploads via Multer, role-based access for curators, and an Express backend with PostgreSQL to manage artwork metadata and user submissions.",
+  "results": [
+    "Optimized image delivery using responsive components and lazy loading.",
+    "Implemented curator and visitor roles with access control.",
+    "Enabled seamless CRUD operations on artwork data."
   ],
-  "image": "",
+  "technologies": [
+    "React",
+    "Tailwind CSS",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "Multer",
+    "Sequelize",
+    "JWT Auth"
+  ],
+  "features": [
+    "Artwork submission and moderation",
+    "Responsive image gallery layout",
+    "Role-based login system (curator, visitor)",
+    "Secure image upload with validation",
+    "Artwork filtering by artist, medium, and era",
+    "Visitor interaction via likes and comments"
+  ],
+  "image": "/AG_Thumbnail.png",
+  "gallery":["/AG_Thumbnail.png","/AG1.png", "/AG2.png", "/AG3.png", "/AG4.png","/AG5.png","/AG6.png","/AG7.png"],
   "metrics": {
-    "logo": "Model",           
-    "year": "2024",
-    "rating": "4.2"
+    "logo": "Web",
+    "year": "2025",
+    "rating": "4.5"
   },
-  "color": "emerald",
-  "bgGradient": "from-emerald-100 to-green-100",
+  "color": "rose",
+  "bgGradient": "from-rose-100 to-pink-100",
   "testimonial": null,
   "liveUrl": "",
   "githubUrl": ""
 }
+
 
 ]
 

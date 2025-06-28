@@ -749,7 +749,7 @@ export default function HomePage() {
                   </svg>
                 </motion.a>
                 <motion.a
-                  href="https://instagram.com/shrinav"
+                  href="https://www.instagram.com/shrinav._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-primary transition-all duration-300"
@@ -835,7 +835,7 @@ export default function HomePage() {
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                   </a>
-                  <a href="https://instagram.com/shrinav" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
+                  <a href="https://www.instagram.com/shrinav._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.618 5.367 11.986 11.988 11.986s11.987-5.368 11.987-11.986C24.014 5.367 18.635.001 12.017.001zm5.568 16.791c-.001.264-.106.52-.292.706-.187.187-.442.292-.706.292H7.239c-.264 0-.52-.105-.706-.292a.994.994 0 01-.292-.706V7.239c0-.264.106-.52.292-.706.187-.187.442-.292.706-.292h9.348c.264 0 .52.105.706.292.187.187.292.442.292.706v9.552z"/>
                       <path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/>
@@ -1106,10 +1106,10 @@ export default function HomePage() {
                 <div className="space-y-4">
                   {[
                     { icon: Mail, text: "shrinavjee@gmail.com", href: "mailto:shrinavjee@gmail.com", label: "Email Us" },
-                    { icon: Phone, text: "+917698563522", href: "tel:+917698563522", label: "Call Us" },
-                    { icon: Phone, text: "+919016771335", href: "tel:+919016771335", label: "Call Us" },
                     { icon: MapPin, text: "Ahmedabad, Gujarat", href: "#", label: "Visit Us (India)" },
+                    { icon: Phone, text: "+917698563522", href: "tel:+917698563522", label: "Call Us" },
                     { icon: MapPin, text: "Red Deer, Alberta, Canada", href: "#", label: "Visit Us (Canada)" },
+                    { icon: Phone, text: "+1 (368) 889-1145", href: "tel:+13688891145", label: "Call Us" },
                   ].map((item, index) => (
                     <motion.a
                       key={item.label}

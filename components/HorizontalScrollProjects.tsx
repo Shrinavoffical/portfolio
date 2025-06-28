@@ -45,7 +45,7 @@ export default function ProjectsGrid({ data = { projects: [] } }) {
                   
                   {/* Metrics */}
                   <div className="grid grid-cols-3 gap-2 mb-4">
-                    <div className="text-center bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300">
+                    <div className="text-center bg-gray-50 p-1 rounded-xl group-hover:bg-primary-50 transition-colors duration-300">
                       <div className="flex justify-center p-1">
                         {project.metrics.logo === "Web" && (
                           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-md">
@@ -114,26 +114,24 @@ export default function ProjectsGrid({ data = { projects: [] } }) {
 
                       {/* <div className="text-xs text-gray-600 mt-1">Tech</div> */}
                     </div>
-                    <div className="text-center bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300">
+                    <div className="bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300 flex items-center justify-center">
                       <div className="flex items-center justify-center">
-                        <svg className="h-5 w-5 text-primary mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg className="h-4 w-4 text-primary mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                           <line x1="16" y1="2" x2="16" y2="6"></line>
                           <line x1="8" y1="2" x2="8" y2="6"></line>
                           <line x1="3" y1="10" x2="21" y2="10"></line>
                         </svg>
-                        <div className="text-sm font-bold text-primary">{project.metrics.year}</div>
+                        <div className="text-base font-bold text-primary">{project.metrics.year}</div>
                       </div>
-                      {/* <div className="text-xs text-gray-600 mt-1">Year</div> */}
                     </div>
-                    <div className="text-center bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300">
+                    <div className="bg-gray-50 p-2 rounded-xl group-hover:bg-primary-50 transition-colors duration-300 flex items-center justify-center">
                       <div className="flex items-center justify-center">
-                        <div className="text-sm font-bold text-primary mr-1">{project.metrics.rating}</div>
+                        <div className="text-base font-bold text-primary mr-1">{project.metrics.rating}</div>
                         <svg className="h-4 w-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                         </svg>
                       </div>
-                      {/* <div className="text-xs text-gray-600 mt-1">Rating</div> */}
                     </div>
                   </div>
 

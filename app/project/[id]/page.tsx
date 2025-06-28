@@ -248,7 +248,7 @@ export default function ProjectDetailPage() {
                   </svg>
                 </motion.a>
                 <motion.a
-                  href="https://instagram.com/shrinav"
+                  href="https://www.instagram.com/shrinav._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-primary transition-all duration-300"
