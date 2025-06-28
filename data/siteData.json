@@ -285,9 +285,9 @@
   "testimonials": [
     {
       "id": 1,
-      "name": "Sarah Johnson",
-      "role": "CEO",
-      "company": "TechStart Inc.",
+      "name": "Neesarg Soni",
+      "role": "",
+      "company": "",
       "content": "Shrinav transformed our vision into reality with exceptional attention to detail. Their team delivered a world-class product that exceeded all our expectations.",
       "rating": 5,
       "avatar": "/placeholder.svg?height=80&width=80",
@@ -295,7 +295,7 @@
     },
     {
       "id": 2,
-      "name": "Michael Chen",
+      "name": "Dishant Patel",
       "role": "CTO",
       "company": "GrowthLab",
       "content": "The expertise in both design and development is unmatched. They delivered a scalable solution that helped us achieve 300% growth in just 6 months.",
@@ -305,7 +305,7 @@
     },
     {
       "id": 3,
-      "name": "Emily Rodriguez",
+      "name": "Jeet Kayasth",
       "role": "Founder",
       "company": "InnovateCorp",
       "content": "Working with Shrinav was transformative. Their technical skills and creative approach helped us launch faster and more successfully than we imagined.",

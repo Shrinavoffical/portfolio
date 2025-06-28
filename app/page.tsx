@@ -79,25 +79,25 @@ const services = [
 // Enhanced testimonials with ratings
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "CEO",
-    company: "TechStart Inc.",
+    name: "Neesarg Soni",
+    role: "Developer",
+    company: "",
     content:
       "Shrinav transformed our vision into reality with exceptional attention to detail. Their team delivered a world-class product that exceeded all our expectations.",
     rating: 5,
   },
   {
-    name: "Michael Chen",
-    role: "CTO",
-    company: "GrowthLab",
+    name: "Jeet Kayasth",
+    role: "CFO",
+    company: "",
     content:
       "The expertise in both design and development is unmatched. They delivered a scalable solution that helped us achieve 300% growth in just 6 months.",
     rating: 4.7,
   },
   {
-    name: "Emily Rodriguez",
-    role: "Founder",
-    company: "InnovateCorp",
+    name: "Dishant Patel",
+    role: "CEO",
+    company: "",
     content:
       "Working with Shrinav was transformative. Their technical skills and creative approach helped us launch faster and more successfully than we imagined.",
     rating: 4.5,
