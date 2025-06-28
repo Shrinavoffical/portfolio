@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import axios from "axios"
+
 import {
   Code,
   Smartphone,
@@ -453,9 +455,10 @@ const ContactForm = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email"
     }
-
-    if (!formData.projectType) {
-      newErrors.projectType = "Please select a project type"
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = "Mobile number is required"
+    } else if (!/^\d{10}$/.test(formData.mobile)) {
+      newErrors.mobile = "Please enter a valid 10-digit mobile number"
     }
 
     if (!formData.message.trim()) {
@@ -471,15 +474,43 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!validateForm()) return
-
+    // if (!validateForm()) return
+    
     setIsSubmitting(true)
+    console.log("Form Data submitting")
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+  const payload = new URLSearchParams();
+  payload.append("entry.716092560", formData.name);
+  payload.append("entry.1416580929", formData.email);
+  payload.append("entry.938952601", formData.mobile);
+  payload.append("entry.1864823807", formData.message);
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    // Submit to Google Forms
+fetch(
+      "https://docs.google.com/forms/d/e/1FAIpQLSfAiiMhMx4nVVveM_3sl-CxIhK38c8mDP1-8Ih05BlT6ykr7Q/formResponse",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: payload.toString(),
+      }
+    ).then((response)=>{
+      console.log(response)
+    }).catch((error)=>{
+      console.error("Error submitting form:", error)
+      setIsSubmitting(false)
+      setErrors({ submit: "Failed to send message. Please try again later." })
+      return
+    })
+
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    }, 1000)
+
+
 
     // Reset form after 3 seconds
     setTimeout(() => {
@@ -1107,9 +1138,9 @@ export default function HomePage() {
                   {[
                     { icon: Mail, text: "shrinavjee@gmail.com", href: "mailto:shrinavjee@gmail.com", label: "Email Us" },
                     { icon: MapPin, text: "Ahmedabad, Gujarat", href: "#", label: "Visit Us (India)" },
-                    { icon: Phone, text: "+917698563522", href: "tel:+917698563522", label: "Call Us" },
+                    { icon: Phone, text: "+917698563522", href: "tel:+917698563522", label: "Call Us (India)" },
                     { icon: MapPin, text: "Red Deer, Alberta, Canada", href: "#", label: "Visit Us (Canada)" },
-                    { icon: Phone, text: "+1 (368) 889-1145", href: "tel:+13688891145", label: "Call Us" },
+                    { icon: Phone, text: "+1 (368) 889-1145", href: "tel:+13688891145", label: "Call Us (Canada)" },
                   ].map((item, index) => (
                     <motion.a
                       key={item.label}
