@@ -1312,6 +1312,7 @@ export default function HomePage() {
               <ul className="space-y-3 text-gray-400">
                 <li><a href="mailto:shrinavjee@gmail.com"> shrinavjee@gmail.com</a></li>
                 <li><a href="tel:+917698563522">+917698563522 </a></li>
+                <li><a href="tel:+13688891145">+1 (368) 889-1145 </a></li>
                 {/* <li></li> */}
                 <li>Ahmedabad, Gujarat</li>
               </ul>
