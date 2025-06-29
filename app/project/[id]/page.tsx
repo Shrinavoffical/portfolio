@@ -195,25 +195,27 @@ export default function ProjectDetailPage() {
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <motion.div
-              className="flex items-center"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <Image
-                src="/logo.jpg"
-                alt="Shrinav Logo"
-                width={40}
-                height={40}
-                className="rounded-lg mr-3"
-                priority
-              />
-              <div className="text-3xl font-bold tracking-tight">
-                <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
-              </div>
-            </motion.div>
+            <Link href="/">
+              <motion.div
+                className="flex items-center cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Image
+                  src="/logo.jpg"
+                  alt="Shrinav Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-lg mr-3"
+                  priority
+                />
+                <div className="text-3xl font-bold tracking-tight">
+                  <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Shrinav</span>
+                </div>
+              </motion.div>
+            </Link>
 
             <div className="hidden md:flex items-center space-x-8">
               {["About", "Services", "Projects", "Contact"].map((item, index) => (

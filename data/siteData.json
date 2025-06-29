@@ -163,8 +163,8 @@
       "Loan lifecycle tracking",
       "Client document management"
     ],
-    "image": "/CRM1.png",
-    "gallery": ["/CRM1.png", "/CRM2.png", "/CRM4.png", "/CRM.png"],
+    "image": "/Loan CRM Thumbnail.jpeg",
+    "gallery": ["/Loan CRM Thumbnail.jpeg","/Loan CRM1.jpeg","/CRM1.png", "/CRM2.png", "/CRM4.png", "/CRM.png"],
     "metrics": { "logo": "CRM", "year": "2024", "rating": "4.3" },
     "color": "gray",
     "bgGradient": "from-gray-100 to-neutral-100",
