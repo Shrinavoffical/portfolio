@@ -928,7 +928,7 @@ export default function HomePage() {
                       <path d="M12.017 7.075c-2.717 0-4.912 2.196-4.912 4.912s2.195 4.912 4.912 4.912 4.912-2.195 4.912-4.912-2.195-4.912-4.912-4.912zm0 8.072a3.16 3.16 0 01-3.16-3.16 3.16 3.16 0 013.16-3.16 3.16 3.16 0 013.16 3.16 3.16 3.16 0 01-3.16 3.16zM17.156 6.924c0 .22-.071.433-.2.6a.901.901 0 01-.6.2.901.901 0 01-.6-.2.901.901 0 01-.2-.6c0-.22.071-.433.2-.6a.901.901 0 01.6-.2c.22 0 .433.071.6.2.129.167.2.38.2.6z"/>
                     </svg>
                   </a>
-                  <a href="mailto:hello@shrinav.com" className="text-gray-600 hover:text-primary">
+                  <a href="mailto:shrinavjee@gmail.com" className="text-gray-600 hover:text-primary">
                     <Mail className="h-5 w-5" />
                   </a>
                 </div>
