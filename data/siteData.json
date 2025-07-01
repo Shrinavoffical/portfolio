@@ -144,7 +144,7 @@
     "githubUrl": ""
   },
   {
-    "id": 4,
+    "id": 3,
     "title": "Spam Prediction Browser Extension",
     "category": "Browser Extension",
     "client": "Internal Project",
@@ -172,7 +172,7 @@
     "githubUrl": ""
   },
   {
-    "id": 5,
+    "id": 4,
     "title": "Student Management System",
     "category": "Admin Application",
     "client": "Educational Institutions",
@@ -201,7 +201,7 @@
     "githubUrl": ""
   },
   {
-  "id": 6,
+  "id": 5,
   "title": "Virtual Art Gallery",
   "category": "Art & Exhibition Platform",
   "client": "Curated Arts Collective",
